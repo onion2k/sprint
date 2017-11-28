@@ -6,7 +6,7 @@ class Navbar extends Component {
     return (
         <div>
             <nav className="App-header">
-                <a href="https://sprinter.io">Sprinter</a>
+                <a href="/">Sprinter</a>
             </nav>
         </div>
     );

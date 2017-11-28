@@ -7,7 +7,7 @@ class Sidebar extends Component {
         <aside>
 
             <nav>
-                <a href="">Project Settings</a>
+                <a href="/settings">Project Settings</a>
             </nav>
 
             <section>
