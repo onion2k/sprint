@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import {
+    Link
+} from 'react-router-dom';
 import './Sidebar.css';
 
 class Sidebar extends Component {
@@ -7,20 +10,20 @@ class Sidebar extends Component {
         <aside>
 
             <nav>
-                <a href="/settings">Project Settings</a>
+                <Link to="/settings">Project Settings</Link>
             </nav>
 
             <section>
-                <h1>Sprint 1</h1>
+                <Link to="/editor/1">Sprint 1</Link>
             </section>
             <section>
-                <h1>Sprint 2</h1>
+                <Link to="/editor/2">Sprint 2</Link>
             </section>
             <section>
-                <h1>Sprint 3</h1>
+                <Link to="/editor/3">Sprint 3</Link>
             </section>
             <section>
-                <h1>Sprint 4</h1>
+                <Link to="/editor/4">Sprint 4</Link>
             </section>
         </aside>
     );

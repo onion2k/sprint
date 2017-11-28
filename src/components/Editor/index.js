@@ -9,6 +9,7 @@ class Editor extends Component {
     return (
         <article className="Editor">
             <SprintPager />
+            <h1>Sprint { this.props.match.params.sprint }</h1>
             <div>
                 <Sprint id="1" />
                 <Sprint id="2" />

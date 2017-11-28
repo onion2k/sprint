@@ -24,8 +24,8 @@ class App extends Component {
                     <Sidebar />
                     <Route path="/" exact component={ Home }/>
                     <Route path="/login" component={Login}/>
-                    <PrivateRoute path="/editor" component={ Editor }/>
-                    <PrivateRoute path="/settings" component={ Settings }/>
+                    <Route path="/editor/:sprint?" component={ Editor }/>
+                    <Route path="/settings" component={ Settings }/>
                 </main>
             </div>
         </Router>
@@ -73,33 +73,34 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 
 class Login extends React.Component {
     state = {
-      redirectToReferrer: false
+        redirectToReferrer: false
     }
-  
+
     login = () => {
-      fakeAuth.authenticate(() => {
-        this.setState({ redirectToReferrer: true })
-      })
+        fakeAuth.authenticate(() => {
+            this.setState({ redirectToReferrer: true })
+        })
     }
-  
+
     render() {
-      const { from } = this.props.location.state || { from: { pathname: '/' } }
-      const { redirectToReferrer } = this.state
-      
-      if (redirectToReferrer) {
+
+        const { from } = this.props.location.state || { from: { pathname: '/' } }
+        const { redirectToReferrer } = this.state
+        
+        if (redirectToReferrer) {
+            return (
+                <Redirect to={from}/>
+            )
+        }
+        
         return (
-          <Redirect to={from}/>
-        )
-      }
-      
-      return (
-        <div>
-          <p>You must log in to view the page at {from.pathname}</p>
-          <button onClick={this.login}>Log in</button>
-        </div>
-      )
+            <div>
+            <p>You must log in to view the page at {from.pathname}</p>
+            <button onClick={this.login}>Log in</button>
+            </div>
+        );
+
     }
-  }
-  
+}
 
 export default App;
