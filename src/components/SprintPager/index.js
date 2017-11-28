@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './SprintPager.css';
 
 class SprintPager extends Component {
   render() {
     return (
         <div>
-            <a href="">Previous Sprint</a>
-            <a href="">Next Sprint</a>
+          <Link to={ '/editor/'+this.props.prev }>Previous Sprint</Link>
+          <Link to={ '/editor/'+this.props.next }>Next Sprint</Link>
         </div>
     );
   }
