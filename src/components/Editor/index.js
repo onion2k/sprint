@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Editor.css';
+import firebase from '../../firebase.js';
 
 import Task from '../Task';
 import SprintPager from '../SprintPager';
@@ -31,6 +32,16 @@ class Editor extends Component {
                 'abcdef100': []
             }
         };
+
+    }
+
+    componentWillMount() {
+
+        const project = firebase.database().ref('project');
+
+        project.on('value', (snapshot) => {
+            this.setState({ project: snapshot.val() });
+        });
 
     }
 
