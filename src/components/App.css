@@ -1,5 +1,8 @@
-.App {
+@import url('http://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed|Alegreya:700');
 
+.App {
+    font-family: 'Roboto';
+    font-weight: 400;
 }
 
 .App-header {

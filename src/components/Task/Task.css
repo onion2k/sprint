@@ -29,3 +29,9 @@ section > div {
     flex: 1;
     padding: 10px;
 }
+
+p {
+    font-family: 'Roboto Condensed';
+    font-size: 0.8rem;
+    padding: 10px;
+}

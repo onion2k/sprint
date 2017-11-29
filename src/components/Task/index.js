@@ -13,6 +13,7 @@ class Task extends Component {
                     <div className="Min"><label>Min</label> { this.props.task.min }</div>
                     <div className="Max"><label>Max</label> { this.props.task.max }</div>
                 </div>
+                <p>{ this.props.task.comments || 'No comments' }</p>
             </section>
         );
     }
