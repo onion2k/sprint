@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
     Link
 } from 'react-router-dom';
+import { List } from 'semantic-ui-react'
 import './Sidebar.css';
 
 class Sidebar extends Component {
@@ -14,10 +15,10 @@ class Sidebar extends Component {
             project: 'Super Cool React App',
             sprints: ['abcdef123','abcdef456','abcdef789','abcdef100'],
             sprint: {
-                'abcdef123': { title: 'Sprint 1', total: 75 },
-                'abcdef456': { title: 'Sprint 2', total: 15 },
-                'abcdef789': { title: 'Sprint 3', total: 3.75 },
-                'abcdef100': { title: 'Sprint 4', total: 37.5 }
+                'abcdef123': { title: 'Sprint 1', total: 75, type: 'code' },
+                'abcdef456': { title: 'Sprint 2', total: 15, type: 'image' },
+                'abcdef789': { title: 'Sprint 3', total: 3.75, type: 'code' },
+                'abcdef100': { title: 'Sprint 4', total: 37.5, type: 'code' }
             }
         };
 
@@ -28,17 +29,15 @@ class Sidebar extends Component {
 
         let sprints = this.state.sprints.map((id) => {
             let sprint = this.state.sprint[id];
-            let height = (sprint.total*3)+'px';
-            let style = {
-                minHeight: height
-            }
-            return (<li key={ id } style={ style }>
-                <Link to={'/editor/'+id}>
-                    { sprint.title }
-                    <span>{ sprint.total / 7.5 } days</span>
-                    <span>Delete Sprint</span>
-                </Link>
-            </li>)
+            return (
+                <List.Item key={ id }>
+                    <List.Icon name={ sprint.type } verticalAlign='middle' />
+                    <List.Content>
+                        <List.Header as={Link} to={'/editor/'+id}>{ sprint.title }</List.Header>
+                        <List.Description>{ sprint.total / 7.5 } days</List.Description>
+                    </List.Content>
+                </List.Item>
+            )
         });
 
 
@@ -49,9 +48,9 @@ class Sidebar extends Component {
                     <Link to="/settings">Project Settings</Link>
                 </nav>
 
-                <ul className="Sprints">
+                <List divided relaxed className="Sprints">
                     { sprints }
-                </ul>
+                </List>
 
                 <nav>
                     <Link to="/newsprint">New Sprint</Link>

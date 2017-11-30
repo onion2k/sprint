@@ -1,28 +1,4 @@
 
-.App-header {
-    background-color: #222;
-    padding: 20px;
-    color: white;
+aside {
+    padding: 10px;
 }
-
-nav {
-    padding: 10px 0 10px 20px;    
-}
-
-ul.Sprints {
-    padding: 0 0 20px 0;
-    border-left: 2px solid #ddd;
-    list-style: none;
-}
-
-ul.Sprints > li {
-    padding: 10px 0 10px 20px;
-    margin-right: 20px;
-    border-bottom: 2px solid #ddd;
-}
-
-ul.Sprints > li > a > span {
-    display: block;
-    font-size: 0.8rem;
-}
-    
