@@ -6,6 +6,7 @@ h1 {
 }
 
 .pending {
+    width: 50%;
     color: #bdc3c7;
     background-color: #bdc3c7;
     animation-name: skeletonAnimation;
