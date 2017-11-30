@@ -5,6 +5,8 @@ import firebase from '../../firebase.js';
 import Task from '../Task';
 import SprintPager from '../SprintPager';
 
+import ProjectTitle from './ProjectTitle';
+
 class Editor extends Component {
 
     constructor() {
@@ -12,7 +14,7 @@ class Editor extends Component {
         super();
 
         this.state = {
-            project: 'Super Cool React App',
+            project: undefined,
             sprints: ['abcdef123','abcdef456','abcdef789','abcdef100'],
             sprint: {
                 'abcdef123': { title: 'Sprint 1', total: 75 },
@@ -58,7 +60,7 @@ class Editor extends Component {
         return (
             <article className="Editor">
                 <SprintPager prev={ 'abcdef100' } next={ 'abcdef789' } />
-                <h1>{ this.state.project } - { this.state.sprint[this.props.match.params.sprint].title }</h1>
+                <ProjectTitle title={ this.state.project } />
                 <div>
                     { tasks }
                 </div>
