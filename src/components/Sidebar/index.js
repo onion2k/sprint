@@ -44,17 +44,9 @@ class Sidebar extends Component {
         return (
             <aside>
 
-                <nav>
-                    <Link to="/settings">Project Settings</Link>
-                </nav>
-
                 <List divided relaxed className="Sprints">
                     { sprints }
                 </List>
-
-                <nav>
-                    <Link to="/newsprint">New Sprint</Link>
-                </nav>
 
             </aside>
         );

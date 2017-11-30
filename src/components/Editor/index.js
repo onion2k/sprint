@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Editor.css';
 import firebase from '../../firebase.js';
+import { Button, Container, Divider, Grid, Header, Image, Menu, Segment } from 'semantic-ui-react'
 
 import Task from '../Task';
 import SprintPager from '../SprintPager';
@@ -60,7 +61,7 @@ class Editor extends Component {
         return (
             <article className="Editor">
                 <SprintPager prev={ 'abcdef100' } next={ 'abcdef789' } />
-                <ProjectTitle title={ this.state.project } />
+                <Header as='h1' dividing>{ this.state.project }</Header>
                 <div>
                     { tasks }
                 </div>

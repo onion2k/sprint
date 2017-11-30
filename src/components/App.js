@@ -6,6 +6,7 @@ import {
     Redirect,
     withRouter
 } from 'react-router-dom';
+import { Button, Container, Divider, Grid, Header, Image, Menu, Segment, Dropdown } from 'semantic-ui-react'
 import './App.css';
 
 import Navbar from './Navbar';
@@ -18,15 +19,35 @@ class App extends Component {
   render() {
     return (
         <Router>
-            <div className="App">
-                <Navbar />
-                <main>
-                    <Sidebar />
-                    <Route path="/" exact component={ Home }/>
-                    <Route path="/login" component={Login}/>
-                    <Route path="/editor/:sprint?" component={ Editor }/>
-                    <Route path="/settings" component={ Settings }/>
-                </main>
+            <div>
+                <Menu fixed='top' inverted>
+                    <Container className="App">
+                        <Menu.Item as='a' header>Sprinter</Menu.Item>
+                        <Menu.Menu position='right'>
+                            <Menu.Item as='a'>New Sprint</Menu.Item>
+                            <Menu.Item as={Link} to='/settings'>Project Settings</Menu.Item>
+                            <Dropdown item text='Options'>
+                                <Dropdown.Menu>
+                                    <Dropdown.Item>Estimates</Dropdown.Item>
+                                    <Dropdown.Item>Templates</Dropdown.Item>
+                                    <Dropdown.Divider />
+                                    <Dropdown.Header>Logout</Dropdown.Header>
+                                    <Dropdown.Item>Logout</Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </Menu.Menu>
+                    </Container>
+                </Menu>
+
+                <Container>
+                    <main style={{ marginTop: '4.0rem' }}>
+                        <Sidebar />
+                        <Route path="/" exact component={ Home }/>
+                        <Route path="/login" component={Login}/>
+                        <Route path="/editor/:sprint?" component={ Editor }/>
+                        <Route path="/settings" component={ Settings }/>
+                    </main>
+                </Container>
             </div>
         </Router>
     );

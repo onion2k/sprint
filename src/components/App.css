@@ -21,7 +21,7 @@ main {
 }
 
 article {
-  flex: 4;
+  flex: 3;
 }
 
 article > section {
