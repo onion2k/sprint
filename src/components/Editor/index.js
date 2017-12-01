@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Editor.css';
 import firebase from '../../firebase.js';
-import { Button, Container, Divider, Grid, Header, Image, Menu, Segment } from 'semantic-ui-react'
+import { Button, Container, Divider, Grid, Header, Image, Menu, Segment, Statistic } from 'semantic-ui-react'
 
 import Task from '../Task';
 import SprintPager from '../SprintPager';
@@ -58,18 +58,38 @@ class Editor extends Component {
         let avg = this.state.tasks[this.props.match.params.sprint].reduce( function(a, b){ return a + (b['min']+b['max'])/2; }, 0);
         let max = this.state.tasks[this.props.match.params.sprint].reduce( function(a, b){ return a + b['max']; }, 0);
 
+        let cnt = avg - min;
+        let risk = max / min;
+        
         return (
             <article className="Editor">
-                <SprintPager prev={ 'abcdef100' } next={ 'abcdef789' } />
                 <Header as='h1' dividing>{ this.state.project }</Header>
+                <Statistic.Group widths='four'>
+                    <Statistic>
+                        <Statistic.Value>{ avg }</Statistic.Value>
+                        <Statistic.Label>Hours Quoted</Statistic.Label>
+                    </Statistic>
+
+                    <Statistic>
+                        <Statistic.Value>{ min }</Statistic.Value>
+                        <Statistic.Label>Scheduled</Statistic.Label>
+                    </Statistic>
+
+                    <Statistic>
+                        <Statistic.Value>{ cnt }</Statistic.Value>
+                        <Statistic.Label>Contingency</Statistic.Label>
+                    </Statistic>
+
+                    <Statistic>
+                        <Statistic.Value>{ Math.round(risk) }</Statistic.Value>
+                        <Statistic.Label>Risk</Statistic.Label>
+                    </Statistic>
+                </Statistic.Group>
+
                 <div>
                     { tasks }
                 </div>
-                <div>
-                    Min hours: { min }<br />
-                    Avg hours: { avg }<br />
-                    Max hours: { max }
-                </div>
+
             </article>
         );
     }

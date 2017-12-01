@@ -1,11 +1,34 @@
 import React, { Component } from 'react';
 import './Home.css';
-import { Icon, Image, Statistic } from 'semantic-ui-react'
+import firebase from '../../firebase.js';
+import { Icon, Header, Image, Statistic } from 'semantic-ui-react'
 
 class Home extends Component {
-  render() {
+    constructor() {
+
+        super();
+
+        this.state = {
+            project: undefined,
+        }
+    }
+
+    componentWillMount() {
+
+        const project = firebase.database().ref('project');
+
+        project.on('value', (snapshot) => {
+            this.setState({ project: snapshot.val() });
+        });
+
+    }
+
+    render() {
     return (
         <article className='Home'>
+
+            <Header as='h1' dividing>{ this.state.project }</Header>
+
             <Statistic.Group widths='four'>
                 <Statistic>
                     <Statistic.Value>4</Statistic.Value>

@@ -22,14 +22,14 @@ class App extends Component {
             <div>
                 <Menu fixed='top' inverted>
                     <Container className="App">
-                        <Menu.Item as='a' header>Sprinter</Menu.Item>
+                        <Menu.Item as={Link} to="/" header>Sprinter</Menu.Item>
                         <Menu.Menu position='right'>
                             <Menu.Item as='a'>New Sprint</Menu.Item>
                             <Menu.Item as={Link} to='/settings'>Project Settings</Menu.Item>
-                            <Dropdown item text='Options'>
-                                <Dropdown.Menu>
-                                    <Dropdown.Item>Estimates</Dropdown.Item>
-                                    <Dropdown.Item>Templates</Dropdown.Item>
+                            <Dropdown item icon='ellipsis vertical'>
+                                <Dropdown.Menu style={{ minWidth:'200px' }}>
+                                    <Dropdown.Item as={Link} to='/estimates' description='cmd + e' text='Estimates' />
+                                    <Dropdown.Item as={Link} to='/templates' description='cmd + t' text='Templates' />
                                     <Dropdown.Divider />
                                     <Dropdown.Header>Logout</Dropdown.Header>
                                     <Dropdown.Item>Logout</Dropdown.Item>
