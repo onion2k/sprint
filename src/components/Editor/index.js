@@ -6,8 +6,6 @@ import { Button, Container, Divider, Grid, Header, Image, Menu, Segment, Statist
 import Task from '../Task';
 import SprintPager from '../SprintPager';
 
-import ProjectTitle from './ProjectTitle';
-
 class Editor extends Component {
 
     constructor() {
@@ -85,6 +83,8 @@ class Editor extends Component {
                         <Statistic.Label>Risk</Statistic.Label>
                     </Statistic>
                 </Statistic.Group>
+
+                <Header as='h2' dividing>Tasks</Header>
 
                 <div>
                     { tasks }
