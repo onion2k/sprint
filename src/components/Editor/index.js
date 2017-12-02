@@ -78,7 +78,7 @@ class Editor extends Component {
         let min = this.state.tasks[this.props.match.params.sprint].reduce( function(a, b){ return a + parseInt(b['min'], 10); }, 0);
         let max = this.state.tasks[this.props.match.params.sprint].reduce( function(a, b){ return a + parseInt(b['max'], 10); }, 0);
         let avg = this.state.tasks[this.props.match.params.sprint].reduce( function(a, b){ return a + ( (parseInt(b['min'], 10)+parseInt(b['max'], 10)) / 2 ); }, 0);
-        
+
         let cnt = avg - min;
         let risk = max / min;
         
@@ -107,7 +107,7 @@ class Editor extends Component {
 
                 <Header as='h2' dividing>Sprint Details</Header>
 
-                <Form style={{ backgroundColor: '#f8f8f8', padding: '15px', marginBottom: '15px', border: '1px solid #eee' }}>
+                <Form style={{ marginBottom: '15px' }}>
                     <Form.Field required>
                         <label>Sprint Title</label>
                         <input name='project' placeholder='What is it...' value={ this.state.project } onChange={ this.handleChange } />
@@ -115,17 +115,27 @@ class Editor extends Component {
                     <Form.Field name='type' required control={Select} label='Type' options={options} value={this.state.type} placeholder='Type' onChange={ this.handleChange } />
                 </Form>
 
+                <Header as='h2' dividing>Risks</Header>
+
+                <Form style={{ marginBottom: '15px' }}>
+                    <Form.TextArea name='risks' label='Risks' value={this.state.risks} placeholder='What are the unknowns? Why might this sprint be hard?' onChange={ this.handleChange } />
+                </Form>
+
                 <Header as='h2' dividing>Tasks</Header>
 
                 <div>
                     { tasks }
+                    <Task task={{ id: null, title:null, min: null, max: null, type: 'DEVELOPMENT', comments: '' }} />
                 </div>
 
-                <Header as='h2' dividing>Risks</Header>
+                <Header as='h2' dividing>Actions</Header>
 
-                <Form style={{ backgroundColor: '#f8f8f8', padding: '15px', marginBottom: '15px', border: '1px solid #eee' }}>
-                    <Form.TextArea name='risks' label='Risks' value={this.state.risks} placeholder='What are the unknowns? Why might this sprint be hard?' onChange={ this.handleChange } />
-                </Form>
+                <Grid columns={2}>
+                    <Grid.Row>
+                        <Grid.Column><Button negative>Delete Sprint</Button></Grid.Column>
+                        <Grid.Column style={{ textAlign: 'right' }}><Button positive>Save Sprint</Button></Grid.Column>
+                    </Grid.Row>
+                </Grid>
 
             </article>
         );

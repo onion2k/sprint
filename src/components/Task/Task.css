@@ -1,37 +1,3 @@
-section {
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-}
+.form.Task {
 
-section > div {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-.Title {
-    flex: 3;
-    padding: 10px;
-}
-
-.Type {
-    flex: 1;
-    padding: 10px;
-}
-
-.Min {
-    flex: 1;
-    padding: 10px;
-}
-
-.Max {
-    flex: 1;
-    padding: 10px;
-}
-
-p {
-    font-family: 'Roboto Condensed';
-    font-size: 0.8rem;
-    padding: 10px;
 }

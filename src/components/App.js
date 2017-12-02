@@ -14,6 +14,8 @@ import Sidebar from './Sidebar';
 import Home from './Home';
 import Editor from './Editor';
 import Settings from './Settings';
+import Estimates from './Estimates';
+import Templates from './Templates';
 
 class App extends Component {
   render() {
@@ -46,6 +48,8 @@ class App extends Component {
                         <Route path="/login" component={Login}/>
                         <Route path="/editor/:sprint?" component={ Editor }/>
                         <Route path="/settings" component={ Settings }/>
+                        <Route path="/estimates" component={ Estimates }/>
+                        <Route path="/templates" component={ Templates }/>
                     </main>
                 </Container>
             </div>
