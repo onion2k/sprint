@@ -13,12 +13,12 @@ class Sidebar extends Component {
 
         this.state = {
             project: 'Super Cool React App',
-            sprints: ['abcdef123','abcdef456','abcdef789','abcdef100'],
-            sprint: {
-                'abcdef123': { title: 'Sprint 1', total: 75, type: 'code' },
-                'abcdef456': { title: 'Sprint 2', total: 15, type: 'image' },
-                'abcdef789': { title: 'Sprint 3', total: 3.75, type: 'code' },
-                'abcdef100': { title: 'Sprint 4', total: 37.5, type: 'code' }
+            features: ['abcdef123','abcdef456','abcdef789','abcdef100'],
+            feature: {
+                'abcdef123': { title: 'Feature 1', total: 75, type: 'code' },
+                'abcdef456': { title: 'Feature 2', total: 15, type: 'image' },
+                'abcdef789': { title: 'Feature 3', total: 3.75, type: 'code' },
+                'abcdef100': { title: 'Feature 4', total: 37.5, type: 'code' }
             }
         };
 
@@ -27,14 +27,14 @@ class Sidebar extends Component {
 
     render() {
 
-        let sprints = this.state.sprints.map((id) => {
-            let sprint = this.state.sprint[id];
+        let features = this.state.features.map((id) => {
+            let feature = this.state.feature[id];
             return (
                 <List.Item key={ id }>
-                    <List.Icon name={ sprint.type } verticalAlign='middle' />
+                    <List.Icon name={ feature.type } verticalAlign='middle' />
                     <List.Content>
-                        <List.Header as={Link} to={'/editor/'+id}>{ sprint.title }</List.Header>
-                        <List.Description>{ sprint.total / 7.5 } days</List.Description>
+                        <List.Header as={Link} to={'/editor/'+id}>{ feature.title }</List.Header>
+                        <List.Description>{ feature.total / 7.5 } days</List.Description>
                     </List.Content>
                 </List.Item>
             )
@@ -44,8 +44,8 @@ class Sidebar extends Component {
         return (
             <aside>
 
-                <List divided relaxed className="Sprints">
-                    { sprints }
+                <List divided relaxed className="Features">
+                    { features }
                 </List>
 
             </aside>

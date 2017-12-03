@@ -25,16 +25,15 @@ class Task extends Component {
         let button = null;
         if (task.id !== null) {
             button = <Popup
-                trigger={<Button content='Delete' fluid style={{ width: '90px', marginTop: '25px' }} />}
+                trigger={<Button icon='delete' style={{ marginTop: '24px' }} />}
                 content={<Button color='red' content='Are you sure?' />}
                 on='click'
                 position='top right'
             />;
         } else {
-            button = <Button positive content='Add' fluid style={{ width: '90px', marginTop: '25px' }} />;
+            button = <Button positive icon='check' style={{ marginTop: '24px' }} />;
         }
-
-
+        
         return (
             <Form className='Task' key={task.id}>
                 <Form.Group>
@@ -44,7 +43,10 @@ class Task extends Component {
                     </Form.Field>
                     <Form.Input name='min' required width={2} label='Minimum' placeholder='3.5' value={task.min} onChange={ this.handleChange } />
                     <Form.Input name='max' required width={2} label='Maximum' placeholder='100' value={task.max} onChange={ this.handleChange } />
-                    <Form.Field>
+                    <Form.Field width={1}>
+                        <Button icon='code' style={{ marginTop: '24px' }} />
+                    </Form.Field>
+                    <Form.Field width={1}>
                         { button }
                     </Form.Field>
                 </Form.Group>

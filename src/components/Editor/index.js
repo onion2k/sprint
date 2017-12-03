@@ -4,7 +4,6 @@ import firebase from '../../firebase.js';
 import { Form, Button, Container, Divider, Grid, Header, Image, Menu, Segment, Statistic, Select } from 'semantic-ui-react'
 
 import Task from '../Task';
-import SprintPager from '../SprintPager';
 
 const options = [
     { key: 'design', text: 'Design', value: 'design' },
@@ -20,12 +19,12 @@ class Editor extends Component {
         this.state = {
             project: '',
             task: 'design',
-            sprints: ['abcdef123','abcdef456','abcdef789','abcdef100'],
-            sprint: {
-                'abcdef123': { title: 'Sprint 1', total: 75 },
-                'abcdef456': { title: 'Sprint 2', total: 15 },
-                'abcdef789': { title: 'Sprint 3', total: 3.75 },
-                'abcdef100': { title: 'Sprint 4', total: 37.5 }
+            features: ['abcdef123','abcdef456','abcdef789','abcdef100'],
+            feature: {
+                'abcdef123': { title: 'Feature 1', total: 75 },
+                'abcdef456': { title: 'Feature 2', total: 15 },
+                'abcdef789': { title: 'Feature 3', total: 3.75 },
+                'abcdef100': { title: 'Feature 4', total: 37.5 }
             },
             tasks: {
                 'abcdef123': [
@@ -70,20 +69,20 @@ class Editor extends Component {
 
     render() {
 
-        let tasks = this.state.tasks[this.props.match.params.sprint].map((task) => {
+        let tasks = this.state.tasks[this.props.match.params.feature].map((task) => {
             return <Task key={task.id} task={ task } update={this.updateTask} />
         });
 
         let a = 0;
-        let min = this.state.tasks[this.props.match.params.sprint].reduce( function(a, b){ return a + parseInt(b['min'], 10); }, 0);
-        let max = this.state.tasks[this.props.match.params.sprint].reduce( function(a, b){ return a + parseInt(b['max'], 10); }, 0);
-        let avg = this.state.tasks[this.props.match.params.sprint].reduce( function(a, b){ return a + ( (parseInt(b['min'], 10)+parseInt(b['max'], 10)) / 2 ); }, 0);
+        let min = this.state.tasks[this.props.match.params.feature].reduce( function(a, b){ return a + parseInt(b['min'], 10); }, 0);
+        let max = this.state.tasks[this.props.match.params.feature].reduce( function(a, b){ return a + parseInt(b['max'], 10); }, 0);
+        let avg = this.state.tasks[this.props.match.params.feature].reduce( function(a, b){ return a + ( (parseInt(b['min'], 10)+parseInt(b['max'], 10)) / 2 ); }, 0);
 
         let cnt = avg - min;
         let risk = max / min;
         
         return (
-            <article className="Editor" style={{ marginTop: '1.0rem'}}>
+            <article className="Editor">
                 <Header as='h1' dividing>{ this.state.project }</Header>
 
                 <Statistic.Group widths='four'>
@@ -105,11 +104,11 @@ class Editor extends Component {
                     </Statistic>
                 </Statistic.Group>
 
-                <Header as='h2' dividing>Sprint Details</Header>
+                <Header as='h2' dividing>Feature Details</Header>
 
                 <Form style={{ marginBottom: '15px' }}>
                     <Form.Field required>
-                        <label>Sprint Title</label>
+                        <label>Feature Title</label>
                         <input name='project' placeholder='What is it...' value={ this.state.project } onChange={ this.handleChange } />
                     </Form.Field>
                     <Form.Field name='type' required control={Select} label='Type' options={options} value={this.state.type} placeholder='Type' onChange={ this.handleChange } />
@@ -118,7 +117,7 @@ class Editor extends Component {
                 <Header as='h2' dividing>Risks</Header>
 
                 <Form style={{ marginBottom: '15px' }}>
-                    <Form.TextArea name='risks' label='Risks' value={this.state.risks} placeholder='What are the unknowns? Why might this sprint be hard?' onChange={ this.handleChange } />
+                    <Form.TextArea name='risks' label='Risks' value={this.state.risks} placeholder='What are the unknowns? Why might this feature be hard?' onChange={ this.handleChange } />
                 </Form>
 
                 <Header as='h2' dividing>Tasks</Header>
@@ -132,8 +131,8 @@ class Editor extends Component {
 
                 <Grid columns={2}>
                     <Grid.Row>
-                        <Grid.Column><Button negative>Delete Sprint</Button></Grid.Column>
-                        <Grid.Column style={{ textAlign: 'right' }}><Button positive>Save Sprint</Button></Grid.Column>
+                        <Grid.Column><Button negative>Delete Feature</Button></Grid.Column>
+                        <Grid.Column style={{ textAlign: 'right' }}><Button positive>Save Feature</Button></Grid.Column>
                     </Grid.Row>
                 </Grid>
 
