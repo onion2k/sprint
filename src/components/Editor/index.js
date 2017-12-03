@@ -28,7 +28,7 @@ class Editor extends Component {
 
         this.actions = props.actions;
 
-        console.log(props);
+        this.actions.project('TITLE');
 
         this.state = {
             project: props.project.title,
