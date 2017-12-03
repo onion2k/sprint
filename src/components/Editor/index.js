@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
 import './Editor.css';
-import firebase from '../../firebase.js';
+import { connect } from 'react-redux';
+import * as actions from '../../data/actions'
+import { bindActionCreators } from 'redux'
 import { Form, Button, Container, Divider, Grid, Header, Image, Menu, Segment, Statistic, Select } from 'semantic-ui-react'
 
 import Task from '../Task';
+
+function mapStateToProps(state) {
+    return { project: state.project };
+}
+
+function mapDispatchToProps(dispatch) {
+    return { actions: bindActionCreators(actions, dispatch) }
+}
 
 const options = [
     { key: 'design', text: 'Design', value: 'design' },
@@ -12,12 +22,16 @@ const options = [
 
 class Editor extends Component {
 
-    constructor() {
+    constructor(props) {
 
-        super();
+        super(props);
+
+        this.actions = props.actions;
+
+        console.log(props);
 
         this.state = {
-            project: '',
+            project: props.project.title,
             task: 'design',
             features: ['abcdef123','abcdef456','abcdef789','abcdef100'],
             feature: {
@@ -44,14 +58,8 @@ class Editor extends Component {
 
     }
 
-    componentWillMount() {
-
-        const project = firebase.database().ref('project');
-
-        project.on('value', (snapshot) => {
-            this.setState({ project: snapshot.val() });
-        });
-
+    componentWillReceiveProps(nextProps){
+        console.log(nextProps);
     }
 
     updateTask(task){
@@ -141,4 +149,4 @@ class Editor extends Component {
     }
 }
 
-export default Editor;
+export default connect(mapStateToProps, mapDispatchToProps)(Editor);

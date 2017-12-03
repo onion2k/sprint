@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Home.css';
-import firebase from '../../firebase.js';
 import { Icon, Header, Image, Statistic } from 'semantic-ui-react'
 
 class Home extends Component {
@@ -14,12 +13,6 @@ class Home extends Component {
     }
 
     componentWillMount() {
-
-        const project = firebase.database().ref('project');
-
-        project.on('value', (snapshot) => {
-            this.setState({ project: snapshot.val() });
-        });
 
     }
 
