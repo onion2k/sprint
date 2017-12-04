@@ -3,7 +3,7 @@ import './Editor.css';
 import { connect } from 'react-redux';
 import * as actions from '../../data/actions'
 import { bindActionCreators } from 'redux'
-import { Form, Button, Container, Divider, Grid, Header, Image, Menu, Segment, Statistic, Select } from 'semantic-ui-react'
+import { Form, Button, Grid, Header, Statistic, Select } from 'semantic-ui-react'
 
 import Task from '../Task';
 
@@ -32,7 +32,9 @@ class Editor extends Component {
 
         this.state = {
             project: props.project.title,
+            type: 'development',
             task: 'design',
+            risks: 'design',
             features: ['abcdef123','abcdef456','abcdef789','abcdef100'],
             feature: {
                 'abcdef123': { title: 'Feature 1', total: 75 },
@@ -64,15 +66,13 @@ class Editor extends Component {
 
     updateTask(task){
         let t = this.state.tasks;
-        let tc = t[this.props.match.params.sprint].find((t)=>{ return t.id === task.id});
-        tc = task;
+        // let tc = t[this.props.match.params.sprint].find((t)=>{ return t.id === task.id});
+        // tc = task;
         this.setState({ tasks: t });
     }
 
     handleChange = (e) => {
-
         this.setState({ project: e.target.value });
-
     };
 
     render() {
@@ -81,13 +81,15 @@ class Editor extends Component {
             return <Task key={task.id} task={ task } update={this.updateTask} />
         });
 
-        let a = 0;
-        let min = this.state.tasks[this.props.match.params.feature].reduce( function(a, b){ return a + parseInt(b['min'], 10); }, 0);
-        let max = this.state.tasks[this.props.match.params.feature].reduce( function(a, b){ return a + parseInt(b['max'], 10); }, 0);
+        let min = this.state.tasks[this.props.match.params.feature].reduce( function(a, b){ return a + parseInt(b['min'], 10); }, 0) || 0;
+        let max = this.state.tasks[this.props.match.params.feature].reduce( function(a, b){ return a + parseInt(b['max'], 10); }, 0) || 0;
         let avg = this.state.tasks[this.props.match.params.feature].reduce( function(a, b){ return a + ( (parseInt(b['min'], 10)+parseInt(b['max'], 10)) / 2 ); }, 0);
 
         let cnt = avg - min;
-        let risk = max / min;
+        let risk = 0;
+        if (min > 0) {
+            risk = max / min;
+        }
         
         return (
             <article className="Editor">
@@ -132,7 +134,7 @@ class Editor extends Component {
 
                 <div>
                     { tasks }
-                    <Task task={{ id: null, title:null, min: null, max: null, type: 'DEVELOPMENT', comments: '' }} />
+                    <Task task={{ id: '', title:'', min: '', max: '', type: 'DEVELOPMENT', comments: '' }} />
                 </div>
 
                 <Header as='h2' dividing>Actions</Header>

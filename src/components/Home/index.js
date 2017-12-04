@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Home.css';
-import { Icon, Header, Image, Statistic } from 'semantic-ui-react'
+import { Header, Statistic } from 'semantic-ui-react'
 
 class Home extends Component {
     constructor() {

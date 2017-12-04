@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button, Container, Divider, Grid, Header, Image, Menu, Segment, Statistic, Select } from 'semantic-ui-react'
+import { Form, Header, Select } from 'semantic-ui-react'
 import './Settings.css';
 import firebase from '../../firebase.js';
 
@@ -30,8 +30,8 @@ class Settings extends Component {
 
     updateTask(task){
         let t = this.state.tasks;
-        let tc = t[this.props.match.params.sprint].find((t)=>{ return t.id === task.id});
-        tc = task;
+        // let tc = t[this.props.match.params.sprint].find((t)=>{ return t.id === task.id});
+        // tc = task;
         this.setState({ tasks: t });
     }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Divider, Popup, Button, Checkbox, Form, Input, Radio, Select, TextArea } from 'semantic-ui-react'
+import { Popup, Button, Form } from 'semantic-ui-react'
 import './Task.css';
 
 class Task extends Component {

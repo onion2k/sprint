@@ -4,7 +4,7 @@ import {
     Route,
     Link,
     Redirect,
-    withRouter
+    // withRouter
 } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
@@ -12,10 +12,9 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import reducers from '../data/reducers';
 
-import { Button, Container, Divider, Grid, Header, Image, Menu, Segment, Dropdown } from 'semantic-ui-react'
+import { Container, Menu, Dropdown } from 'semantic-ui-react'
 import './App.css';
 
-import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 import Home from './Home';
 import Editor from './Editor';
@@ -97,30 +96,30 @@ const fakeAuth = {
     }
 }
 
-const AuthButton = withRouter(({ history }) => (
-    fakeAuth.isAuthenticated ? (
-        <p>
-        Welcome! <button onClick={() => {
-            fakeAuth.signout(() => history.push('/'))
-        }}>Sign out</button>
-        </p>
-    ) : (
-        <p>You are not logged in.</p>
-    )
-))
+// const AuthButton = withRouter(({ history }) => (
+//     fakeAuth.isAuthenticated ? (
+//         <p>
+//         Welcome! <button onClick={() => {
+//             fakeAuth.signout(() => history.push('/'))
+//         }}>Sign out</button>
+//         </p>
+//     ) : (
+//         <p>You are not logged in.</p>
+//     )
+// ))
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-    <Route {...rest} render={props => (
-        fakeAuth.isAuthenticated ? (
-        <Component {...props}/>
-        ) : (
-        <Redirect to={{
-            pathname: '/login',
-            state: { from: props.location }
-        }}/>
-        )
-    )}/>
-)
+// const PrivateRoute = ({ component: Component, ...rest }) => (
+//     <Route {...rest} render={props => (
+//         fakeAuth.isAuthenticated ? (
+//         <Component {...props}/>
+//         ) : (
+//         <Redirect to={{
+//             pathname: '/login',
+//             state: { from: props.location }
+//         }}/>
+//         )
+//     )}/>
+// )
 
 class Login extends React.Component {
     state = {
