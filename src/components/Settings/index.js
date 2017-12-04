@@ -1,7 +1,18 @@
 import React, { Component } from 'react';
 import { Form, Header, Select } from 'semantic-ui-react'
 import './Settings.css';
-import firebase from '../../firebase.js';
+import { connect } from 'react-redux';
+import * as actions from '../../data/actions'
+import { bindActionCreators } from 'redux'
+
+function mapStateToProps(state) {
+    console.log(state);
+    return { project: state.project };
+}
+
+function mapDispatchToProps(dispatch) {
+    return { actions: bindActionCreators(actions, dispatch) }
+}
 
 const options = [
     { key: 'elanders', text: 'Elanders', value: 'elanders' },
@@ -9,23 +20,16 @@ const options = [
 ]
 
 class Settings extends Component {
-    constructor() {
-        super();
+
+    constructor(props) {
+        super(props);
+        console.log(props);
+        this.actions = props.actions;
         this.state = {
-            project: '',
+            project: props.project.title,
             client: 'elanders',
             description: ''
         }
-    }
-
-    componentWillMount() {
-        
-        const project = firebase.database().ref('project');
-
-        project.on('value', (snapshot) => {
-            this.setState({ project: snapshot.val() });
-        });
-
     }
 
     updateTask(task){
@@ -63,4 +67,4 @@ class Settings extends Component {
     }
 }
 
-export default Settings;
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);
