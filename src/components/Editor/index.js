@@ -8,7 +8,7 @@ import { Form, Button, Grid, Header, Statistic, Select } from 'semantic-ui-react
 import Task from '../Task';
 
 function mapStateToProps(state) {
-    return { project: state.project };
+    return { project: state.projectReducer };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -61,7 +61,7 @@ class Editor extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        console.log(nextProps);
+
     }
 
     updateTask(task){

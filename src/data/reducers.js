@@ -1,10 +1,10 @@
 
 import { combineReducers } from 'redux';
 
-import project from './project';
+import projectReducer from './projectReducer';
 
 const rootReducer = combineReducers({
-    project
+    projectReducer
 });
 
 export default rootReducer;

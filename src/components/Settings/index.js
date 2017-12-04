@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import { Form, Header, Select } from 'semantic-ui-react'
+import { Form, Button, Header, Select, Grid } from 'semantic-ui-react'
 import './Settings.css';
 import { connect } from 'react-redux';
-import * as actions from '../../data/actions'
+import * as projectActions from '../../data/actions'
 import { bindActionCreators } from 'redux'
 
 function mapStateToProps(state) {
     console.log(state);
-    return { project: state.project };
+    return { project: state.projectReducer };
 }
 
 function mapDispatchToProps(dispatch) {
-    return { actions: bindActionCreators(actions, dispatch) }
+    return { boundActions: bindActionCreators(projectActions, dispatch) }
 }
 
 const options = [
@@ -23,13 +23,17 @@ class Settings extends Component {
 
     constructor(props) {
         super(props);
-        console.log(props);
-        this.actions = props.actions;
+
+        this.saveProject = props.boundActions.project;
+
         this.state = {
             project: props.project.title,
             client: 'elanders',
             description: ''
         }
+
+        this.handleChange = this.handleChange.bind(this);
+        
     }
 
     updateTask(task){
@@ -39,9 +43,13 @@ class Settings extends Component {
         this.setState({ tasks: t });
     }
 
-    handleChange = (e, {name, value}) => {
-        this.setState({ [name]: value });
+    handleChange = (e) => {
+        this.setState({ project: e.target.value });
     };
+
+    callSaveProject = () => {
+        this.saveProject({ title: this.state.project });
+    }
  
     render() {
         return (
@@ -61,6 +69,15 @@ class Settings extends Component {
                 <Form style={{ marginBottom: '15px' }}>
                     <Form.TextArea name='description' label='Description' value={this.state.description} placeholder='What would we be building?' onChange={ this.handleChange } />
                 </Form>
+
+                <Header as='h2' dividing>Actions</Header>
+
+                <Grid columns={2}>
+                    <Grid.Row>
+                        <Grid.Column><Button negative>Delete Project</Button></Grid.Column>
+                        <Grid.Column style={{ textAlign: 'right' }}><Button positive onClick={ this.callSaveProject }>Save Project</Button></Grid.Column>
+                    </Grid.Row>
+                </Grid>
 
             </article>
         );
