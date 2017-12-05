@@ -72,7 +72,13 @@ class Editor extends Component {
     }
 
     handleChange = (e) => {
-        this.setState({ project: e.target.value });
+
+        const target = e.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+ 
+        this.setState({ [name]: value });
+
     };
 
     render() {

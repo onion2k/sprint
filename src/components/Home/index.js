@@ -1,14 +1,28 @@
 import React, { Component } from 'react';
 import './Home.css';
+import { connect } from 'react-redux';
+import * as actions from '../../data/actions'
+import { bindActionCreators } from 'redux'
 import { Header, Statistic } from 'semantic-ui-react'
 
-class Home extends Component {
-    constructor() {
+function mapStateToProps(state) {
+    return { project: state.projectReducer };
+}
 
-        super();
+function mapDispatchToProps(dispatch) {
+    return { actions: bindActionCreators(actions, dispatch) }
+}
+
+class Home extends Component {
+
+    constructor(props) {
+        
+        super(props);
+
+        this.actions = props.actions;
 
         this.state = {
-            project: undefined,
+            project: props.project.title,
         }
     }
 
@@ -50,4 +64,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
