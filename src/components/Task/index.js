@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
-import { Popup, Button, Form } from 'semantic-ui-react'
+import { Popup, Button, Form, Grid } from 'semantic-ui-react'
 import './Task.css';
+
+const icons = {
+    'development': 'code',
+    'design': 'grid layout',
+    'projectmanagement': 'users'
+}
 
 class Task extends Component {
 
@@ -44,7 +50,37 @@ class Task extends Component {
                     <Form.Input name='min' required width={2} label='Minimum' placeholder='3.5' value={task.min} onChange={ this.handleChange } />
                     <Form.Input name='max' required width={2} label='Maximum' placeholder='100' value={task.max} onChange={ this.handleChange } />
                     <Form.Field width={1}>
-                        <Button icon='code' style={{ marginTop: '24px' }} />
+                        <Popup wide trigger={<Button icon={ icons[task.type] || 'help' } style={{ marginTop: '24px' }} />} on='click' position='top center'>
+                            <Grid divided columns='equal'>
+                            <Grid.Column>
+                                <Popup
+                                trigger={<Button color='red' icon='code' fluid />}
+                                content='Development'
+                                position='top center'
+                                size='tiny'
+                                inverted
+                                />
+                            </Grid.Column>
+                            <Grid.Column>
+                                <Popup
+                                trigger={<Button color='blue' icon='grid layout' fluid />}
+                                content='Design'
+                                position='top center'
+                                size='tiny'
+                                inverted
+                                />
+                            </Grid.Column>
+                            <Grid.Column>
+                                <Popup
+                                trigger={<Button color='green' icon='users' fluid />}
+                                content='Project Management'
+                                position='top center'
+                                size='tiny'
+                                inverted
+                                />
+                            </Grid.Column>
+                            </Grid>
+                        </Popup>
                     </Form.Field>
                     <Form.Field width={1}>
                         { button }

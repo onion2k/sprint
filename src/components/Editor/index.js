@@ -30,7 +30,7 @@ class Editor extends Component {
 
         // this.actions.project('TITLE');
 
-        this.state = {
+        this.project = {
             project: props.project.title,
             type: 'development',
             task: 'design',
@@ -44,16 +44,22 @@ class Editor extends Component {
             },
             tasks: {
                 'abcdef123': [
-                    { id: 'task123', title:'Task 1', min: 25, max: 50, type: 'DEVELOPMENT', comments: 'Blah blah blah' }, 
-                    { id: 'task234', title:'Task 2', min: 5, max: 37.5, type: 'DEVELOPMENT', comments: '' }, 
-                    { id: 'task456', title:'Task 3', min: 5, max: 25, type: 'DESIGN', comments: '' }, 
-                    { id: 'task567', title:'Task 4', min: 5, max: 15, type: 'DEVELOPMENT', comments: '' }
+                    { id: 'task123', title:'Task 1', min: 25, max: 50, type: 'development', comments: 'Blah blah blah' }, 
+                    { id: 'task234', title:'Task 2', min: 5, max: 37.5, type: 'design', comments: '' }, 
+                    { id: 'task456', title:'Task 3', min: 5, max: 25, type: 'projectmanagement', comments: '' }, 
+                    { id: 'task567', title:'Task 4', min: 5, max: 15, type: 'development', comments: '' }
                 ],
                 'abcdef456': [],
                 'abcdef789': [],
                 'abcdef100': []
             }
         };
+
+        this.state = {
+            project: this.project.project,
+            feature: this.project.feature[this.props.match.params.feature],
+            tasks: this.project.tasks[this.props.match.params.feature]
+        }
 
         this.handleChange = this.handleChange.bind(this);
         this.updateTask = this.updateTask.bind(this);
@@ -66,8 +72,7 @@ class Editor extends Component {
 
     updateTask(task){
         let t = this.state.tasks;
-        // let tc = t[this.props.match.params.sprint].find((t)=>{ return t.id === task.id});
-        // tc = task;
+        t[task.id] = task;
         this.setState({ tasks: t });
     }
 
@@ -76,20 +81,23 @@ class Editor extends Component {
         const target = e.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
+
+        let feature = this.state.feature;
+        feature[name] = value;
  
-        this.setState({ [name]: value });
+        this.setState({ feature: feature });
 
     };
 
     render() {
 
-        let tasks = this.state.tasks[this.props.match.params.feature].map((task) => {
+        let tasks = this.state.tasks.map((task) => {
             return <Task key={task.id} task={ task } update={this.updateTask} />
         });
 
-        let min = this.state.tasks[this.props.match.params.feature].reduce( function(a, b){ return a + parseInt(b['min'], 10); }, 0) || 0;
-        let max = this.state.tasks[this.props.match.params.feature].reduce( function(a, b){ return a + parseInt(b['max'], 10); }, 0) || 0;
-        let avg = this.state.tasks[this.props.match.params.feature].reduce( function(a, b){ return a + ( (parseInt(b['min'], 10)+parseInt(b['max'], 10)) / 2 ); }, 0);
+        let min = this.state.tasks.reduce( function(a, b){ return a + parseInt(b['min'], 10); }, 0) || 0;
+        let max = this.state.tasks.reduce( function(a, b){ return a + parseInt(b['max'], 10); }, 0) || 0;
+        let avg = this.state.tasks.reduce( function(a, b){ return a + ( (parseInt(b['min'], 10)+parseInt(b['max'], 10)) / 2 ); }, 0);
 
         let cnt = avg - min;
         let risk = 0;
@@ -99,7 +107,7 @@ class Editor extends Component {
         
         return (
             <article className="Editor">
-                <Header as='h1' dividing>{ this.state.project }</Header>
+                <Header as='h1' dividing>{ this.state.project } / { this.state.feature.title }</Header>
 
                 <Statistic.Group widths='four'>
                     <Statistic>
@@ -125,7 +133,7 @@ class Editor extends Component {
                 <Form style={{ marginBottom: '15px' }}>
                     <Form.Field required>
                         <label>Feature Title</label>
-                        <input name='project' placeholder='What is it...' value={ this.state.project } onChange={ this.handleChange } />
+                        <input name='title' placeholder='What is it...' value={ this.state.feature.title } onChange={ this.handleChange } />
                     </Form.Field>
                     <Form.Field name='type' required control={Select} label='Type' options={options} value={this.state.type} placeholder='Type' onChange={ this.handleChange } />
                 </Form>
@@ -140,7 +148,7 @@ class Editor extends Component {
 
                 <div>
                     { tasks }
-                    <Task task={{ id: '', title:'', min: '', max: '', type: 'DEVELOPMENT', comments: '' }} />
+                    <Task task={{ id: null, title:'', min: '', max: '', type: '', comments: '' }} />
                 </div>
 
                 <Header as='h2' dividing>Actions</Header>
