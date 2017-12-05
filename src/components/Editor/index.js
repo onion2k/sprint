@@ -63,6 +63,7 @@ class Editor extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.updateTask = this.updateTask.bind(this);
+        this.deleteTask = this.deleteTask.bind(this);
 
     }
 
@@ -72,7 +73,19 @@ class Editor extends Component {
 
     updateTask(task){
         let t = this.state.tasks;
-        t[task.id] = task;
+        if (task.id===null) {
+            let newtask = Object.assign({}, task);
+            newtask.id = 'new';
+            t.push(newtask);
+        } else {
+            t[task.id] = task;
+        }
+        this.setState({ tasks: t });
+    }
+
+    deleteTask(task){
+        let t = this.state.tasks;
+        t.splice(t.indexOf(task.id), 1);
         this.setState({ tasks: t });
     }
 
@@ -92,7 +105,7 @@ class Editor extends Component {
     render() {
 
         let tasks = this.state.tasks.map((task) => {
-            return <Task key={task.id} task={ task } update={this.updateTask} />
+            return <Task key={task.id} task={ task } update={this.updateTask} delete={this.deleteTask} />
         });
 
         let min = this.state.tasks.reduce( function(a, b){ return a + parseInt(b['min'], 10); }, 0) || 0;
@@ -148,7 +161,7 @@ class Editor extends Component {
 
                 <div>
                     { tasks }
-                    <Task task={{ id: null, title:'', min: '', max: '', type: '', comments: '' }} />
+                    <Task task={{ id: null, title:'', min: '', max: '', type: '', comments: ''  }} update={this.updateTask} />
                 </div>
 
                 <Header as='h2' dividing>Actions</Header>

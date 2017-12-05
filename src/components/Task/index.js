@@ -17,13 +17,29 @@ class Task extends Component {
         }
     }
 
-    handleChange = (e, { name, value }) => {
+    handleChange = (e) => {
+        const target = e.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+
         let task = this.state.task;
         task[name] = value;
-        this.setState({ task: task });
-        this.props.update(task);
+ 
+        this.setState({ task: task }, ()=>{
+            if (task.id===null) { return }
+            this.props.update(this.state.task);
+        });
+
     };
-    
+
+    deleteTask = (e) => {
+        this.props.delete(this.state.task);
+    }
+
+    addTask = (e) => {
+        this.props.update(this.state.task);
+    }
+
     render() {
 
         const { task } = this.state;
@@ -32,12 +48,12 @@ class Task extends Component {
         if (task.id !== null) {
             button = <Popup
                 trigger={<Button icon='delete' style={{ marginTop: '24px' }} />}
-                content={<Button color='red' content='Are you sure?' />}
+                content={<Button color='red' content='Are you sure?' onClick={ this.deleteTask } />}
                 on='click'
                 position='top right'
             />;
         } else {
-            button = <Button positive icon='check' style={{ marginTop: '24px' }} />;
+            button = <Button positive icon='check' style={{ marginTop: '24px' }} onClick={ this.addTask } />;
         }
         
         return (
