@@ -6,7 +6,6 @@ import * as projectActions from '../../data/actions'
 import { bindActionCreators } from 'redux'
 
 function mapStateToProps(state) {
-    console.log(state);
     return { project: state.projectReducer };
 }
 
@@ -34,13 +33,6 @@ class Settings extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         
-    }
-
-    updateTask(task){
-        let t = this.state.tasks;
-        // let tc = t[this.props.match.params.sprint].find((t)=>{ return t.id === task.id});
-        // tc = task;
-        this.setState({ tasks: t });
     }
 
     handleChange = (e) => {
