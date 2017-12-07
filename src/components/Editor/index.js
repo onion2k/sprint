@@ -169,7 +169,10 @@ class Editor extends Component {
                 <Grid columns={2}>
                     <Grid.Row>
                         <Grid.Column><Button negative>Delete Feature</Button></Grid.Column>
-                        <Grid.Column style={{ textAlign: 'right' }}><Button positive>Save Feature</Button></Grid.Column>
+                        <Grid.Column style={{ textAlign: 'right' }}>
+                            <Button>Save As Template</Button>
+                            <Button positive>Save Feature</Button>
+                        </Grid.Column>
                     </Grid.Row>
                 </Grid>
 

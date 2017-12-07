@@ -15,6 +15,7 @@ class Task extends Component {
         this.state = {
             task: props.task
         }
+        this.setType = this.setType.bind(this);
     }
 
     handleChange = (e) => {
@@ -31,6 +32,13 @@ class Task extends Component {
         });
 
     };
+
+    setType = (e) => {
+        let task = this.state.task;
+        task.type = e;
+        this.setState({ task: task });
+        this.props.update(this.state.task);
+    }
 
     deleteTask = (e) => {
         this.props.delete(this.state.task);
@@ -70,7 +78,7 @@ class Task extends Component {
                             <Grid divided columns='equal'>
                             <Grid.Column>
                                 <Popup
-                                trigger={<Button color='red' icon='code' fluid />}
+                                trigger={<Button color='red' icon='code' fluid onClick={()=>this.setType('development')} />}
                                 content='Development'
                                 position='top center'
                                 size='tiny'
@@ -79,7 +87,7 @@ class Task extends Component {
                             </Grid.Column>
                             <Grid.Column>
                                 <Popup
-                                trigger={<Button color='blue' icon='grid layout' fluid />}
+                                trigger={<Button color='blue' icon='grid layout' fluid onClick={()=>this.setType('design')} />}
                                 content='Design'
                                 position='top center'
                                 size='tiny'
@@ -88,7 +96,7 @@ class Task extends Component {
                             </Grid.Column>
                             <Grid.Column>
                                 <Popup
-                                trigger={<Button color='green' icon='users' fluid />}
+                                trigger={<Button color='green' icon='users' fluid onClick={()=>this.setType('projectmanagement')} />}
                                 content='Project Management'
                                 position='top center'
                                 size='tiny'
