@@ -28,7 +28,7 @@ class Editor extends Component {
 
         this.actions = props.actions;
 
-        // this.actions.project('TITLE');
+        console.log(this.props.match.params.feature);
 
         this.project = {
             project: props.project.title,
@@ -69,6 +69,14 @@ class Editor extends Component {
 
     componentWillReceiveProps(nextProps){
 
+        console.log(nextProps);
+        let state = {
+            project: this.project.project,
+            feature: this.project.feature[nextProps.match.params.feature],
+            tasks: this.project.tasks[nextProps.match.params.feature]
+        }
+
+        this.setState(state);
     }
 
     updateTask(task){

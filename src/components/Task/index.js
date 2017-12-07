@@ -38,6 +38,7 @@ class Task extends Component {
         task.type = e;
         this.setState({ task: task });
         this.props.update(this.state.task);
+        this.setState({ isOpen: false })
     }
 
     deleteTask = (e) => {
