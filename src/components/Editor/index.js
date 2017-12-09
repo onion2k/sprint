@@ -87,27 +87,61 @@ class Editor extends Component {
       }
     };
 
-    this.state = {
-      project: this.project.project,
-      feature: this.project.feature[this.props.match.params.feature],
-      tasks: this.project.tasks[this.props.match.params.feature]
-    };
+    constructor(props) {
 
-    this.handleChange = this.handleChange.bind(this);
-    this.updateTask = this.updateTask.bind(this);
-    this.deleteTask = this.deleteTask.bind(this);
-  }
+        super(props);
 
-  componentWillReceiveProps(nextProps) {}
+        this.actions = props.actions;
 
-  updateTask(task) {
-    let t = this.state.tasks;
-    if (task.id === null) {
-      let newtask = Object.assign({}, task);
-      newtask.id = "new";
-      t.push(newtask);
-    } else {
-      t[task.id] = task;
+        console.log(this.props.match.params.feature);
+
+        this.project = {
+            project: props.project.title,
+            type: 'development',
+            task: 'design',
+            risks: 'design',
+            features: ['abcdef123','abcdef456','abcdef789','abcdef100'],
+            feature: {
+                'abcdef123': { title: 'Feature 1', total: 75 },
+                'abcdef456': { title: 'Feature 2', total: 15 },
+                'abcdef789': { title: 'Feature 3', total: 3.75 },
+                'abcdef100': { title: 'Feature 4', total: 37.5 }
+            },
+            tasks: {
+                'abcdef123': [
+                    { id: 'task123', title:'Task 1', min: 25, max: 50, type: 'development', comments: 'Blah blah blah' }, 
+                    { id: 'task234', title:'Task 2', min: 5, max: 37.5, type: 'design', comments: '' }, 
+                    { id: 'task456', title:'Task 3', min: 5, max: 25, type: 'projectmanagement', comments: '' }, 
+                    { id: 'task567', title:'Task 4', min: 5, max: 15, type: 'development', comments: '' }
+                ],
+                'abcdef456': [],
+                'abcdef789': [],
+                'abcdef100': []
+            }
+        };
+
+        this.state = {
+            project: this.project.project,
+            feature: this.project.feature[this.props.match.params.feature],
+            tasks: this.project.tasks[this.props.match.params.feature]
+        }
+
+        this.handleChange = this.handleChange.bind(this);
+        this.updateTask = this.updateTask.bind(this);
+        this.deleteTask = this.deleteTask.bind(this);
+
+    }
+
+    componentWillReceiveProps(nextProps){
+
+        console.log(nextProps);
+        let state = {
+            project: this.project.project,
+            feature: this.project.feature[nextProps.match.params.feature],
+            tasks: this.project.tasks[nextProps.match.params.feature]
+        }
+
+        this.setState(state);
     }
     this.setState({ tasks: t });
   }

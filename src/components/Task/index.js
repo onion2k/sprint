@@ -25,6 +25,7 @@ class Task extends Component {
     let task = this.state.task;
     task[name] = value;
 
+<<<<<<< HEAD
     this.setState({ task: task }, () => {
       if (task.id === null) {
         return;
@@ -32,6 +33,15 @@ class Task extends Component {
       this.props.update(this.state.task);
     });
   };
+=======
+    setType = (e) => {
+        let task = this.state.task;
+        task.type = e;
+        this.setState({ task: task });
+        this.props.update(this.state.task);
+        this.setState({ isOpen: false })
+    }
+>>>>>>> 50bad9f1d9dbabba3ade3184ece381a882d4f341
 
   setType = e => {
     let task = this.state.task;
