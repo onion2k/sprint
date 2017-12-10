@@ -57,7 +57,6 @@ const initialState = {
 export default function project(state = initialState, action) {
   switch (action.type) {
     case LOAD_PROJECT:
-      console.log("LOADING");
       return { ...state };
 
     case UPDATE_PROJECT:

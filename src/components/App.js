@@ -23,11 +23,15 @@ import Estimates from "./Estimates";
 import Rates from "./Rates";
 import Templates from "./Templates";
 
+import * as actions from "../data/actions";
+
 let store = createStore(reducers, applyMiddleware(thunk));
 
 class App extends Component {
   constructor() {
     super();
+
+    store.dispatch(actions.load("abc"));
 
     this.newProject = this.newProject.bind(this);
   }

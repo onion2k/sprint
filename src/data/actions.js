@@ -1,15 +1,23 @@
+// import firebase from "./firebase";
 
-export const project = (project) => {
+export const load = project => {
+  return function(dispatch, getState) {
+    let p = dispatch({
+      type: "LOAD_PROJECT",
+      contents: project
+    });
 
-    return function(dispatch, getState) {
+    return p;
+  };
+};
 
-        let p = dispatch({
-            type: 'UPDATE_PROJECT',
-            contents: project
-        });
+export const update = project => {
+  return function(dispatch, getState) {
+    let p = dispatch({
+      type: "UPDATE_PROJECT",
+      contents: project
+    });
 
-        return p;
-
-    }
-
-}
+    return p;
+  };
+};

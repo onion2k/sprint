@@ -37,6 +37,7 @@ class Home extends Component {
         let days = this.state.project.tasks[b].reduce(function(a, b) {
           return a + (parseInt(b["min"], 10) + parseInt(b["max"], 10)) / 2;
         }, 0);
+
         return a + days;
       }, 0) || 0;
 
