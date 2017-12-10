@@ -3,14 +3,7 @@ import "./Editor.css";
 import { connect } from "react-redux";
 import * as actions from "../../data/actions";
 import { bindActionCreators } from "redux";
-import {
-  Form,
-  Button,
-  Grid,
-  Header,
-  Statistic,
-  Select
-} from "semantic-ui-react";
+import { Form, Button, Grid, Header, Statistic } from "semantic-ui-react";
 import Task from "../Task";
 
 function mapStateToProps(state) {
@@ -21,74 +14,15 @@ function mapDispatchToProps(dispatch) {
   return { actions: bindActionCreators(actions, dispatch) };
 }
 
-const options = [
-  { key: "design", text: "Design", value: "design" },
-  { key: "development", text: "Development", value: "development" }
-];
-
 class Editor extends Component {
   constructor(props) {
     super(props);
 
     this.actions = props.actions;
-
-    console.log(this.props.match.params.feature);
-
-    this.project = {
-      project: props.project.title,
-      type: "development",
-      task: "design",
-      risks: "design",
-      features: ["abcdef123", "abcdef456", "abcdef789", "abcdef100"],
-      feature: {
-        abcdef123: { title: "Feature 1", total: 75 },
-        abcdef456: { title: "Feature 2", total: 15 },
-        abcdef789: { title: "Feature 3", total: 3.75 },
-        abcdef100: { title: "Feature 4", total: 37.5 }
-      },
-      tasks: {
-        abcdef123: [
-          {
-            id: "task123",
-            title: "Task 1",
-            min: 25,
-            max: 50,
-            type: "development",
-            comments: "Blah blah blah"
-          },
-          {
-            id: "task234",
-            title: "Task 2",
-            min: 5,
-            max: 37.5,
-            type: "design",
-            comments: ""
-          },
-          {
-            id: "task456",
-            title: "Task 3",
-            min: 5,
-            max: 25,
-            type: "projectmanagement",
-            comments: ""
-          },
-          {
-            id: "task567",
-            title: "Task 4",
-            min: 5,
-            max: 15,
-            type: "development",
-            comments: ""
-          }
-        ],
-        abcdef456: [],
-        abcdef789: [],
-        abcdef100: []
-      }
-    };
+    this.project = props.project;
 
     this.state = {
-      project: this.project.project,
+      project: this.project,
       feature: this.project.feature[this.props.match.params.feature],
       tasks: this.project.tasks[this.props.match.params.feature]
     };
@@ -100,11 +34,10 @@ class Editor extends Component {
 
   componentWillReceiveProps(nextProps) {
     let state = {
-      project: this.project.project,
+      project: this.project,
       feature: this.project.feature[nextProps.match.params.feature],
       tasks: this.project.tasks[nextProps.match.params.feature]
     };
-
     this.setState(state);
   }
 
@@ -170,7 +103,7 @@ class Editor extends Component {
     return (
       <article className="Editor">
         <Header as="h1" dividing>
-          {this.state.project} / {this.state.feature.title}
+          {this.state.project.title} / {this.state.feature.title}
         </Header>
 
         <Statistic.Group widths="four">
@@ -206,30 +139,6 @@ class Editor extends Component {
               onChange={this.handleChange}
             />
           </Form.Field>
-          <Form.Field
-            name="type"
-            required
-            control={Select}
-            label="Type"
-            options={options}
-            value={this.state.type}
-            placeholder="Type"
-            onChange={this.handleChange}
-          />
-        </Form>
-
-        <Header as="h2" dividing>
-          Risks
-        </Header>
-
-        <Form style={{ marginBottom: "15px" }}>
-          <Form.TextArea
-            name="risks"
-            label="Risks"
-            value={this.state.risks}
-            placeholder="What are the unknowns? Why might this feature be hard?"
-            onChange={this.handleChange}
-          />
         </Form>
 
         <Header as="h2" dividing>
@@ -250,6 +159,20 @@ class Editor extends Component {
             update={this.updateTask}
           />
         </div>
+
+        <Header as="h2" dividing>
+          Risks
+        </Header>
+
+        <Form style={{ marginBottom: "15px" }}>
+          <Form.TextArea
+            name="risks"
+            label="Risks"
+            value={this.state.risks}
+            placeholder="What are the unknowns? Why might this feature be hard?"
+            onChange={this.handleChange}
+          />
+        </Form>
 
         <Header as="h2" dividing>
           Actions

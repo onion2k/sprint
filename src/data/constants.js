@@ -1,3 +1,3 @@
-
-export const ADD_PROJECT = 'ADD_PROJECT';
-export const UPDATE_PROJECT = 'UPDATE_PROJECT';
+export const LOAD_PROJECT = "LOAD_PROJECT";
+export const ADD_PROJECT = "ADD_PROJECT";
+export const UPDATE_PROJECT = "UPDATE_PROJECT";
