@@ -1,12 +1,8 @@
 import React, { Component } from "react";
-import { Popup, Button, Form, Grid } from "semantic-ui-react";
+import { Popup, Button, Form } from "semantic-ui-react";
 import "./Task.css";
 
-const icons = {
-  development: "code",
-  design: "grid layout",
-  projectmanagement: "users"
-};
+import TaskTypeSelector from "./TaskTypeSelector";
 
 class Task extends Component {
   constructor(props) {
@@ -25,7 +21,6 @@ class Task extends Component {
     let task = this.state.task;
     task[name] = value;
 
-<<<<<<< HEAD
     this.setState({ task: task }, () => {
       if (task.id === null) {
         return;
@@ -33,21 +28,14 @@ class Task extends Component {
       this.props.update(this.state.task);
     });
   };
-=======
-    setType = (e) => {
-        let task = this.state.task;
-        task.type = e;
-        this.setState({ task: task });
-        this.props.update(this.state.task);
-        this.setState({ isOpen: false })
-    }
->>>>>>> 50bad9f1d9dbabba3ade3184ece381a882d4f341
 
   setType = e => {
     let task = this.state.task;
     task.type = e;
     this.setState({ task: task });
-    this.props.update(this.state.task);
+    if (task.id !== null) {
+      this.props.update(this.state.task);
+    }
   };
 
   deleteTask = e => {
@@ -119,68 +107,7 @@ class Task extends Component {
             onChange={this.handleChange}
           />
           <Form.Field width={1}>
-            <Popup
-              wide
-              trigger={
-                <Button
-                  icon={icons[task.type] || "help"}
-                  style={{ marginTop: "24px" }}
-                />
-              }
-              on="click"
-              position="top center"
-            >
-              <Grid divided columns="equal">
-                <Grid.Column>
-                  <Popup
-                    trigger={
-                      <Button
-                        color="red"
-                        icon="code"
-                        fluid
-                        onClick={() => this.setType("development")}
-                      />
-                    }
-                    content="Development"
-                    position="top center"
-                    size="tiny"
-                    inverted
-                  />
-                </Grid.Column>
-                <Grid.Column>
-                  <Popup
-                    trigger={
-                      <Button
-                        color="blue"
-                        icon="grid layout"
-                        fluid
-                        onClick={() => this.setType("design")}
-                      />
-                    }
-                    content="Design"
-                    position="top center"
-                    size="tiny"
-                    inverted
-                  />
-                </Grid.Column>
-                <Grid.Column>
-                  <Popup
-                    trigger={
-                      <Button
-                        color="green"
-                        icon="users"
-                        fluid
-                        onClick={() => this.setType("projectmanagement")}
-                      />
-                    }
-                    content="Project Management"
-                    position="top center"
-                    size="tiny"
-                    inverted
-                  />
-                </Grid.Column>
-              </Grid>
-            </Popup>
+            <TaskTypeSelector type={task.type} update={this.setType} />
           </Form.Field>
           <Form.Field width={1}>{button}</Form.Field>
         </Form.Group>
