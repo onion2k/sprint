@@ -37,12 +37,7 @@ class TaskTypeSelector extends Component {
     return (
       <Popup
         wide
-        trigger={
-          <Button
-            icon={icons[this.state.type] || "help"}
-            style={{ marginTop: "24px" }}
-          />
-        }
+        trigger={<Button icon={icons[this.state.type] || "help"} />}
         on="click"
         open={this.state.isOpen}
         onClose={this.handleClose}

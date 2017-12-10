@@ -53,7 +53,7 @@ class Task extends Component {
     if (task.id !== null) {
       button = (
         <Popup
-          trigger={<Button icon="delete" style={{ marginTop: "24px" }} />}
+          trigger={<Button icon="delete" />}
           content={
             <Button
               color="red"
@@ -66,21 +66,13 @@ class Task extends Component {
         />
       );
     } else {
-      button = (
-        <Button
-          positive
-          icon="check"
-          style={{ marginTop: "24px" }}
-          onClick={this.addTask}
-        />
-      );
+      button = <Button positive icon="check" onClick={this.addTask} />;
     }
 
     return (
       <Form className="Task" key={task.id}>
         <Form.Group>
           <Form.Field required width={10}>
-            <label>Task Title</label>
             <input
               name="title"
               placeholder="What is it..."
@@ -92,7 +84,6 @@ class Task extends Component {
             name="min"
             required
             width={2}
-            label="Minimum"
             placeholder="3.5"
             value={task.min}
             onChange={this.handleChange}
@@ -101,7 +92,6 @@ class Task extends Component {
             name="max"
             required
             width={2}
-            label="Maximum"
             placeholder="100"
             value={task.max}
             onChange={this.handleChange}

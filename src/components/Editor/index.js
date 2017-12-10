@@ -146,6 +146,20 @@ class Editor extends Component {
         </Header>
 
         <div>
+          <Form className="taskTitles" columns={3}>
+            <Form.Group>
+              <Form.Field width={10}>
+                <label>Title</label>
+              </Form.Field>
+              <Form.Field width={2}>
+                <label>Minimum</label>
+              </Form.Field>
+              <Form.Field width={2}>
+                <label>Maximum</label>
+              </Form.Field>
+            </Form.Group>
+          </Form>
+
           {tasks}
           <Task
             task={{

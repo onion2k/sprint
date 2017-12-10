@@ -1,28 +1,31 @@
-
 h1 {
-    font-family: 'Alegreya';
-    font-size: 2.0rem;
-    color: #444444;
+  font-family: "Alegreya";
+  font-size: 2rem;
+  color: #444444;
+}
+
+.taskTitles {
+  margin-bottom: -10px;
 }
 
 .pending {
-    width: 50%;
-    color: #bdc3c7;
-    background-color: #bdc3c7;
-    animation-name: skeletonAnimation;
-    animation-duration: 1.5s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-  }
+  width: 50%;
+  color: #bdc3c7;
+  background-color: #bdc3c7;
+  animation-name: skeletonAnimation;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
 
-  @keyframes skeletonAnimation {
-    0% {
-      opacity: 0.6;
-    }
-    50% {
-      opacity: 0.4;
-    }
-    100% {
-      opacity: 0.6;
-    }
+@keyframes skeletonAnimation {
+  0% {
+    opacity: 0.6;
   }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
