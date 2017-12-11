@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { Popup, Button, Grid } from "semantic-ui-react";
+import React, { Component } from 'react';
+import { Popup, Button, Grid } from 'semantic-ui-react';
 
 const icons = {
-  development: "code",
-  design: "grid layout",
-  projectmanagement: "users"
+  development: 'code',
+  design: 'grid layout',
+  projectmanagement: 'users'
 };
 
 class TaskTypeSelector extends Component {
@@ -37,7 +37,7 @@ class TaskTypeSelector extends Component {
     return (
       <Popup
         wide
-        trigger={<Button icon={icons[this.state.type] || "help"} />}
+        trigger={<Button icon={icons[this.state.type] || 'help'} />}
         on="click"
         open={this.state.isOpen}
         onClose={this.handleClose}
@@ -52,7 +52,7 @@ class TaskTypeSelector extends Component {
                   color="red"
                   icon="code"
                   fluid
-                  onClick={() => this.setType("development")}
+                  onClick={() => this.setType('development')}
                 />
               }
               content="Development"
@@ -68,7 +68,7 @@ class TaskTypeSelector extends Component {
                   color="blue"
                   icon="grid layout"
                   fluid
-                  onClick={() => this.setType("design")}
+                  onClick={() => this.setType('design')}
                 />
               }
               content="Design"
@@ -84,7 +84,7 @@ class TaskTypeSelector extends Component {
                   color="green"
                   icon="users"
                   fluid
-                  onClick={() => this.setType("projectmanagement")}
+                  onClick={() => this.setType('projectmanagement')}
                 />
               }
               content="Project Management"

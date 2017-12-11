@@ -1,51 +1,51 @@
-import { LOAD_PROJECT, ADD_PROJECT, UPDATE_PROJECT } from "./constants.js";
+import { LOAD_PROJECT, ADD_PROJECT, UPDATE_PROJECT } from './constants.js';
 
 const initialState = {
-  title: "",
-  client: "elanders",
-  description: "Project desc",
-  task: "design",
-  risks: "design",
-  features: ["abcdef123", "abcdef456", "abcdef789", "abcdef100"],
+  title: '',
+  client: 'elanders',
+  description: 'Project desc',
+  task: 'design',
+  risks: 'design',
+  features: ['abcdef123', 'abcdef456', 'abcdef789', 'abcdef100'],
   feature: {
-    abcdef123: { title: "Feature 1", total: 75 },
-    abcdef456: { title: "Feature 2", total: 15 },
-    abcdef789: { title: "Feature 3", total: 3.75 },
-    abcdef100: { title: "Feature 4", total: 37.5 }
+    abcdef123: { title: 'Feature 1', total: 75 },
+    abcdef456: { title: 'Feature 2', total: 15 },
+    abcdef789: { title: 'Feature 3', total: 3.75 },
+    abcdef100: { title: 'Feature 4', total: 37.5 }
   },
   tasks: {
     abcdef123: [
       {
-        id: "task123",
-        title: "Task 1",
+        id: 'task123',
+        title: 'Task 1',
         min: 25,
         max: 50,
-        type: "development",
-        comments: "Blah blah blah"
+        type: 'development',
+        comments: 'Blah blah blah'
       },
       {
-        id: "task234",
-        title: "Task 2",
+        id: 'task234',
+        title: 'Task 2',
         min: 5,
         max: 37.5,
-        type: "design",
-        comments: ""
+        type: 'design',
+        comments: ''
       },
       {
-        id: "task456",
-        title: "Task 3",
+        id: 'task456',
+        title: 'Task 3',
         min: 5,
         max: 25,
-        type: "projectmanagement",
-        comments: ""
+        type: 'projectmanagement',
+        comments: ''
       },
       {
-        id: "task567",
-        title: "Task 4",
+        id: 'task567',
+        title: 'Task 4',
         min: 5,
         max: 15,
-        type: "development",
-        comments: ""
+        type: 'development',
+        comments: ''
       }
     ],
     abcdef456: [],

@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { Popup, Button, Form } from "semantic-ui-react";
-import "./Task.css";
+import React, { Component } from 'react';
+import { Popup, Button, Form } from 'semantic-ui-react';
+import './Task.css';
 
-import TaskTypeSelector from "./TaskTypeSelector";
+import TaskTypeSelector from './TaskTypeSelector';
 
 class Task extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class Task extends Component {
 
   handleChange = e => {
     const target = e.target;
-    const value = target.type === "checkbox" ? target.checked : target.value;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
 
     let task = this.state.task;

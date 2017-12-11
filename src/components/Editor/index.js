@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import "./Editor.css";
-import { connect } from "react-redux";
-import * as actions from "../../data/actions";
-import { bindActionCreators } from "redux";
-import { Form, Button, Grid, Header, Statistic } from "semantic-ui-react";
-import Task from "../Task";
+import React, { Component } from 'react';
+import './Editor.css';
+import { connect } from 'react-redux';
+import * as actions from '../../data/actions';
+import { bindActionCreators } from 'redux';
+import { Form, Button, Grid, Header, Statistic } from 'semantic-ui-react';
+import Task from '../Task';
 
 function mapStateToProps(state) {
   return { project: state.projectReducer };
@@ -51,7 +51,7 @@ class Editor extends Component {
     let t = this.state.tasks;
     if (task.id === null) {
       let newtask = Object.assign({}, task);
-      newtask.id = "new";
+      newtask.id = 'new';
       t.push(newtask);
     } else {
       t[task.id] = task;
@@ -61,7 +61,7 @@ class Editor extends Component {
 
   handleChange = e => {
     const target = e.target;
-    const value = target.type === "checkbox" ? target.checked : target.value;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
 
     let feature = this.state.feature;
@@ -84,14 +84,14 @@ class Editor extends Component {
 
     let min =
       this.state.tasks.reduce(function(a, b) {
-        return a + parseInt(b["min"], 10);
+        return a + parseInt(b['min'], 10);
       }, 0) || 0;
     let max =
       this.state.tasks.reduce(function(a, b) {
-        return a + parseInt(b["max"], 10);
+        return a + parseInt(b['max'], 10);
       }, 0) || 0;
     let avg = this.state.tasks.reduce(function(a, b) {
-      return a + (parseInt(b["min"], 10) + parseInt(b["max"], 10)) / 2;
+      return a + (parseInt(b['min'], 10) + parseInt(b['max'], 10)) / 2;
     }, 0);
 
     let cnt = avg - min;
@@ -129,7 +129,7 @@ class Editor extends Component {
           Feature Details
         </Header>
 
-        <Form style={{ marginBottom: "15px" }}>
+        <Form style={{ marginBottom: '15px' }}>
           <Form.Field required>
             <label>Feature Title</label>
             <input
@@ -164,11 +164,11 @@ class Editor extends Component {
           <Task
             task={{
               id: null,
-              title: "",
-              min: "",
-              max: "",
-              type: "",
-              comments: ""
+              title: '',
+              min: '',
+              max: '',
+              type: '',
+              comments: ''
             }}
             update={this.updateTask}
           />
@@ -178,7 +178,7 @@ class Editor extends Component {
           Risks
         </Header>
 
-        <Form style={{ marginBottom: "15px" }}>
+        <Form style={{ marginBottom: '15px' }}>
           <Form.TextArea
             name="risks"
             label="Risks"
@@ -197,7 +197,7 @@ class Editor extends Component {
             <Grid.Column>
               <Button negative>Delete Feature</Button>
             </Grid.Column>
-            <Grid.Column style={{ textAlign: "right" }}>
+            <Grid.Column style={{ textAlign: 'right' }}>
               <Button>Save As Template</Button>
               <Button positive>Save Feature</Button>
             </Grid.Column>

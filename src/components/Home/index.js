@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import "./Home.css";
-import { connect } from "react-redux";
-import * as actions from "../../data/actions";
-import { bindActionCreators } from "redux";
-import { Header, Statistic } from "semantic-ui-react";
+import React, { Component } from 'react';
+import './Home.css';
+import { connect } from 'react-redux';
+import * as actions from '../../data/actions';
+import { bindActionCreators } from 'redux';
+import { Header, Statistic } from 'semantic-ui-react';
 
 function mapStateToProps(state) {
   return { project: state.projectReducer };
@@ -35,7 +35,7 @@ class Home extends Component {
     let hours =
       Object.keys(this.state.project.tasks).reduce((a, b) => {
         let days = this.state.project.tasks[b].reduce(function(a, b) {
-          return a + (parseInt(b["min"], 10) + parseInt(b["max"], 10)) / 2;
+          return a + (parseInt(b['min'], 10) + parseInt(b['max'], 10)) / 2;
         }, 0);
 
         return a + days;

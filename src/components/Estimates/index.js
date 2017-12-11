@@ -4,11 +4,9 @@ import './Estimates.css';
 class Estimates extends Component {
   render() {
     return (
-        <article className="Estimates">
-            <div>
-            Estimates
-            </div>
-        </article>
+      <article className="Estimates">
+        <div>Estimates</div>
+      </article>
     );
   }
 }

@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import * as actions from "../../data/actions";
-import { bindActionCreators } from "redux";
-import { List } from "semantic-ui-react";
-import "./Sidebar.css";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from '../../data/actions';
+import { bindActionCreators } from 'redux';
+import { List } from 'semantic-ui-react';
+import './Sidebar.css';
 
 function mapStateToProps(state) {
   return { project: state.projectReducer };
@@ -33,7 +33,7 @@ class Sidebar extends Component {
         <List.Item key={id}>
           <List.Icon name={feature.type} verticalAlign="middle" />
           <List.Content>
-            <List.Header as={Link} to={"/editor/" + id}>
+            <List.Header as={Link} to={'/editor/' + id}>
               {feature.title}
             </List.Header>
             <List.Description>{feature.total / 7.5} days</List.Description>
