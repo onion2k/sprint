@@ -1,13 +1,22 @@
-// import firebase from "./firebase";
+import firebase from "./firebase";
 
 export const load = project => {
   return function(dispatch, getState) {
-    let p = dispatch({
-      type: "LOAD_PROJECT",
-      contents: project
-    });
-
-    return p;
+    return firebase
+      .database()
+      .ref("project")
+      .once("value")
+      .then(
+        function(snapshot) {
+          dispatch({
+            type: "LOAD_PROJECT",
+            contents: snapshot.val()
+          });
+        },
+        function(error) {
+          console.error(error);
+        }
+      );
   };
 };
 

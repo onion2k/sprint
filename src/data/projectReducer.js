@@ -1,7 +1,7 @@
 import { LOAD_PROJECT, ADD_PROJECT, UPDATE_PROJECT } from "./constants.js";
 
 const initialState = {
-  title: "Redux",
+  title: "",
   client: "elanders",
   description: "Project desc",
   task: "design",
@@ -57,6 +57,8 @@ const initialState = {
 export default function project(state = initialState, action) {
   switch (action.type) {
     case LOAD_PROJECT:
+      console.log(action.contents);
+      state.title = action.contents;
       return { ...state };
 
     case UPDATE_PROJECT:
