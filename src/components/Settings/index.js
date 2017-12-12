@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { Form, Button, Header, Select, Grid } from "semantic-ui-react";
-import "./Settings.css";
-import { connect } from "react-redux";
-import * as projectActions from "../../data/actions";
-import { bindActionCreators } from "redux";
+import React, { Component } from 'react';
+import { Form, Button, Header, Select, Grid } from 'semantic-ui-react';
+import './Settings.css';
+import { connect } from 'react-redux';
+import * as projectActions from '../../data/actions';
+import { bindActionCreators } from 'redux';
 
 function mapStateToProps(state) {
   return { project: state.projectReducer };
@@ -14,8 +14,8 @@ function mapDispatchToProps(dispatch) {
 }
 
 const options = [
-  { key: "elanders", text: "Elanders", value: "elanders" },
-  { key: "orchard", text: "Orchard", value: "orchard" }
+  { key: 'elanders', text: 'Elanders', value: 'elanders' },
+  { key: 'orchard', text: 'Orchard', value: 'orchard' }
 ];
 
 class Settings extends Component {
@@ -35,7 +35,7 @@ class Settings extends Component {
 
   handleChange = e => {
     const target = e.target;
-    const value = target.type === "checkbox" ? target.checked : target.value;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
 
     this.setState({ [name]: value });
@@ -52,7 +52,7 @@ class Settings extends Component {
           {this.state.project}
         </Header>
 
-        <Form style={{ marginBottom: "15px" }}>
+        <Form style={{ marginBottom: '15px' }}>
           <Form.Field required>
             <label>Project Title</label>
             <input
@@ -78,7 +78,7 @@ class Settings extends Component {
           Description
         </Header>
 
-        <Form style={{ marginBottom: "15px" }}>
+        <Form style={{ marginBottom: '15px' }}>
           <Form.TextArea
             name="description"
             label="Description"
@@ -97,7 +97,7 @@ class Settings extends Component {
             <Grid.Column>
               <Button negative>Delete Project</Button>
             </Grid.Column>
-            <Grid.Column style={{ textAlign: "right" }}>
+            <Grid.Column style={{ textAlign: 'right' }}>
               <Button positive onClick={this.callSaveProject}>
                 Save Project
               </Button>

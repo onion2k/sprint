@@ -1,29 +1,29 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Route,
   Link,
   Redirect
   // withRouter
-} from "react-router-dom";
+} from 'react-router-dom';
 
-import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
-import reducers from "../data/reducers";
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import reducers from '../data/reducers';
 
-import { Container, Menu, Dropdown } from "semantic-ui-react";
-import "./App.css";
+import { Container, Menu, Dropdown } from 'semantic-ui-react';
+import './App.css';
 
-import Sidebar from "./Sidebar";
-import Home from "./Home";
-import Editor from "./Editor";
-import Settings from "./Settings";
-import Estimates from "./Estimates";
-import Rates from "./Rates";
-import Templates from "./Templates";
+import Sidebar from './Sidebar';
+import Home from './Home';
+import Editor from './Editor';
+import Settings from './Settings';
+import Estimates from './Estimates';
+import Rates from './Rates';
+import Templates from './Templates';
 
-import * as actions from "../data/actions";
+import * as actions from '../data/actions';
 
 let store = createStore(reducers, applyMiddleware(thunk));
 
@@ -31,13 +31,13 @@ class App extends Component {
   constructor() {
     super();
 
-    store.dispatch(actions.load("abc"));
+    store.dispatch(actions.load('abc'));
 
     this.newProject = this.newProject.bind(this);
   }
 
   newProject() {
-    console.log("New!");
+    console.log('New!');
   }
 
   render() {
@@ -56,8 +56,8 @@ class App extends Component {
                     Project Settings
                   </Menu.Item>
                   <Dropdown item icon="ellipsis vertical">
-                    <Dropdown.Menu style={{ minWidth: "200px" }}>
-                      <Dropdown.Header>Home</Dropdown.Header>{" "}
+                    <Dropdown.Menu style={{ minWidth: '200px' }}>
+                      <Dropdown.Header>Home</Dropdown.Header>{' '}
                       <Dropdown.Item
                         as={Link}
                         to="/"
@@ -65,7 +65,7 @@ class App extends Component {
                         text="Home"
                       />
                       <Dropdown.Divider />
-                      <Dropdown.Header>Project</Dropdown.Header>{" "}
+                      <Dropdown.Header>Project</Dropdown.Header>{' '}
                       <Dropdown.Item
                         as={Link}
                         to="/settings"
@@ -180,7 +180,7 @@ class Login extends React.Component {
   };
 
   render() {
-    const { from } = this.props.location.state || { from: { pathname: "/" } };
+    const { from } = this.props.location.state || { from: { pathname: '/' } };
     const { redirectToReferrer } = this.state;
 
     if (redirectToReferrer) {

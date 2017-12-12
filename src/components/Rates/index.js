@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import "./Rates.css";
+import React, { Component } from 'react';
+import './Rates.css';
 
 class Rates extends Component {
   render() {

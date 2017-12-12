@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "firebase": "^4.6.2",
+    "husky": "^0.14.3",
+    "lint-staged": "^6.0.0",
+    "prettier": "^1.9.1",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-redux": "^5.0.6",
@@ -16,9 +19,16 @@
     "semantic-ui-react": "^0.77.0"
   },
   "scripts": {
+    "precommit": "lint-staged",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,css}": [
+            "prettier --single-quote --write",
+            "git add"
+        ]
+    }
 }

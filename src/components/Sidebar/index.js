@@ -27,6 +27,15 @@ class Sidebar extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      project: nextProps.project.title,
+      features: nextProps.project.features,
+      tasks: nextProps.project.tasks,
+      feature: nextProps.project.feature
+    });
+  }
+
   render() {
     let features = this.state.features.map(id => {
       let feature = this.state.feature[id];
