@@ -8,10 +8,10 @@ const initialState = {
   risks: "design",
   features: ["abcdef123", "abcdef456", "abcdef789", "abcdef100"],
   feature: {
-    abcdef123: { title: "Feature 1", total: 75 },
-    abcdef456: { title: "Feature 2", total: 15 },
-    abcdef789: { title: "Feature 3", total: 3.75 },
-    abcdef100: { title: "Feature 4", total: 37.5 }
+    abcdef123: { title: "Feature 1" },
+    abcdef456: { title: "Feature 2" },
+    abcdef789: { title: "Feature 3" },
+    abcdef100: { title: "Feature 4" }
   },
   tasks: {
     abcdef123: [

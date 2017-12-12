@@ -91,7 +91,7 @@ class Editor extends Component {
         return a + parseInt(b["max"], 10);
       }, 0) || 0;
     let avg = this.state.tasks.reduce(function(a, b) {
-      return a + (parseInt(b["min"], 10) + parseInt(b["max"], 10)) / 2;
+      return a + (b.min + b.max) / 2;
     }, 0);
 
     let cnt = avg - min;

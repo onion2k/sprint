@@ -22,21 +22,24 @@ class Sidebar extends Component {
     this.state = {
       project: props.project.title,
       features: props.project.features,
-      feature: props.project.feature
+      feature: props.project.feature,
+      tasks: props.project.tasks
     };
   }
 
   render() {
     let features = this.state.features.map(id => {
       let feature = this.state.feature[id];
+      let hours = this.state.tasks[id].reduce((a, b) => {
+        return a + (b.min + b.max) / 2;
+      }, 0);
       return (
         <List.Item key={id}>
-          <List.Icon name={feature.type} verticalAlign="middle" />
           <List.Content>
             <List.Header as={Link} to={"/editor/" + id}>
               {feature.title}
             </List.Header>
-            <List.Description>{feature.total / 7.5} days</List.Description>
+            <List.Description>{hours} hours</List.Description>
           </List.Content>
         </List.Item>
       );
