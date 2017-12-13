@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import * as actions from "../../data/actions";
-import { bindActionCreators } from "redux";
 import { List } from "semantic-ui-react";
 import "./Sidebar.css";
 
@@ -11,13 +9,12 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return { actions: bindActionCreators(actions, dispatch) };
+  return {};
 }
 
 class Sidebar extends Component {
   constructor(props) {
     super(props);
-    this.actions = props.actions;
 
     this.state = {
       project: props.project.title,

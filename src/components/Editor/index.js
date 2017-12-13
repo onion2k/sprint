@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./Editor.css";
 import { connect } from "react-redux";
-import * as actions from "../../data/actions";
+import * as projectActions from "../../data/projectActions";
 import { bindActionCreators } from "redux";
 import { Form, Button, Grid, Header, Statistic } from "semantic-ui-react";
 import Task from "../Task";
@@ -11,7 +11,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return { actions: bindActionCreators(actions, dispatch) };
+  return { actions: bindActionCreators(projectActions, dispatch) };
 }
 
 class Editor extends Component {
@@ -69,6 +69,18 @@ class Editor extends Component {
 
     this.setState({ feature: feature });
   };
+
+  save() {
+    this.actions.save(this.state);
+  }
+
+  saveAsTemplate() {
+    this.actions.saveAsTemplate(this.state);
+  }
+
+  delete() {
+    this.actions.delete(this.state);
+  }
 
   render() {
     let tasks = this.state.tasks.map(task => {
@@ -195,11 +207,15 @@ class Editor extends Component {
         <Grid columns={2}>
           <Grid.Row>
             <Grid.Column>
-              <Button negative>Delete Feature</Button>
+              <Button negative onClick={this.delete}>
+                Delete Feature
+              </Button>
             </Grid.Column>
             <Grid.Column style={{ textAlign: "right" }}>
-              <Button>Save As Template</Button>
-              <Button positive>Save Feature</Button>
+              <Button onClick={this.saveAsTemplate}>Save As Template</Button>
+              <Button positive onClick={this.save}>
+                Save Feature
+              </Button>
             </Grid.Column>
           </Grid.Row>
         </Grid>

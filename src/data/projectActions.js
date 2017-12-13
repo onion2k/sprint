@@ -1,15 +1,15 @@
-import firebase from './firebase';
+import firebase from "./firebase";
 
 export const load = project => {
   return function(dispatch, getState) {
     return firebase
       .database()
-      .ref('project')
-      .once('value')
+      .ref("project")
+      .once("value")
       .then(
         function(snapshot) {
           dispatch({
-            type: 'LOAD_PROJECT',
+            type: "LOAD_PROJECT",
             contents: snapshot.val()
           });
         },
@@ -23,7 +23,7 @@ export const load = project => {
 export const update = project => {
   return function(dispatch, getState) {
     let p = dispatch({
-      type: 'UPDATE_PROJECT',
+      type: "UPDATE_PROJECT",
       contents: project
     });
 
