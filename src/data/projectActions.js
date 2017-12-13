@@ -22,8 +22,20 @@ export const load = project => {
 
 export const update = project => {
   return function(dispatch, getState) {
+    console.log(project);
     let p = dispatch({
       type: "UPDATE_PROJECT",
+      contents: project
+    });
+
+    return p;
+  };
+};
+
+export const del = project => {
+  return function(dispatch, getState) {
+    let p = dispatch({
+      type: "DELETE_PROJECT",
       contents: project
     });
 

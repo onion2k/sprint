@@ -1,4 +1,9 @@
-import { LOAD_PROJECT, ADD_PROJECT, UPDATE_PROJECT } from "./constants.js";
+import {
+  DELETE_PROJECT,
+  LOAD_PROJECT,
+  ADD_PROJECT,
+  UPDATE_PROJECT
+} from "./constants.js";
 
 const initialState = {
   title: "",
@@ -57,7 +62,6 @@ const initialState = {
 export default function project(state = initialState, action) {
   switch (action.type) {
     case LOAD_PROJECT:
-      console.log(action.contents);
       state.title = action.contents;
       return { ...state };
 

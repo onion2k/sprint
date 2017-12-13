@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { Popup, Button, Form } from 'semantic-ui-react';
-import './Task.css';
+import React, { Component } from "react";
+import { Popup, Button, Form } from "semantic-ui-react";
+import "./Task.css";
 
-import TaskTypeSelector from './TaskTypeSelector';
+import TaskTypeSelector from "./TaskTypeSelector";
 
 class Task extends Component {
   constructor(props) {
@@ -15,8 +15,17 @@ class Task extends Component {
 
   handleChange = e => {
     const target = e.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
+    let name = target.name;
+    let value;
+    if (name === "min" || name === "max") {
+      if (target.value) {
+        value = parseFloat(target.value);
+      } else {
+        value = 0;
+      }
+    } else {
+      value = target.type === "checkbox" ? target.checked : target.value;
+    }
 
     let task = this.state.task;
     task[name] = value;
@@ -25,7 +34,7 @@ class Task extends Component {
       if (task.id === null) {
         return;
       }
-      this.props.update(this.state.task);
+      this.props.update(task);
     });
   };
 
@@ -86,6 +95,7 @@ class Task extends Component {
             width={2}
             placeholder="3.5"
             value={task.min}
+            data-as="float"
             onChange={this.handleChange}
           />
           <Form.Input
@@ -94,6 +104,7 @@ class Task extends Component {
             width={2}
             placeholder="100"
             value={task.max}
+            data-as="float"
             onChange={this.handleChange}
           />
           <Form.Field width={1}>

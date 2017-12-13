@@ -11,14 +11,14 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return { actions: bindActionCreators(projectActions, dispatch) };
+  return { projectActions: bindActionCreators(projectActions, dispatch) };
 }
 
 class Editor extends Component {
   constructor(props) {
     super(props);
 
-    this.actions = props.actions;
+    this.projectActions = props.projectActions;
     this.project = props.project;
 
     this.state = {
@@ -30,6 +30,10 @@ class Editor extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.updateTask = this.updateTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
+
+    this.save = this.save.bind(this);
+    this.saveAsTemplate = this.saveAsTemplate.bind(this);
+    this.delete = this.delete.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -71,15 +75,17 @@ class Editor extends Component {
   };
 
   save() {
-    this.actions.save(this.state);
+    console.log(this.state);
+    console.log(this.projectActions);
+    this.projectActions.update(this.state);
   }
 
   saveAsTemplate() {
-    this.actions.saveAsTemplate(this.state);
+    this.projectActions.saveAsTemplate(this.state);
   }
 
   delete() {
-    this.actions.delete(this.state);
+    this.projectActions.delete(this.state);
   }
 
   render() {
