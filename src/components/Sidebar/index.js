@@ -42,7 +42,7 @@ class Sidebar extends Component {
       return (
         <List.Item key={id}>
           <List.Content>
-            <List.Header as={Link} to={"/editor/" + id}>
+            <List.Header as={Link} to={"/project/" + id}>
               {feature.title}
             </List.Header>
             <List.Description>{hours} hours</List.Description>

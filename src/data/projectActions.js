@@ -22,10 +22,21 @@ export const load = project => {
 
 export const update = project => {
   return function(dispatch, getState) {
-    console.log(project);
     let p = dispatch({
       type: "UPDATE_PROJECT",
       contents: project
+    });
+
+    return p;
+  };
+};
+
+export const updateFeature = feature => {
+  return function(dispatch, getState) {
+    console.log("Update feature from action: ", feature);
+    let p = dispatch({
+      type: "UPDATE_FEATURE",
+      contents: feature
     });
 
     return p;

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./Editor.css";
+import "./Project.css";
 import { connect } from "react-redux";
 import * as projectActions from "../../data/projectActions";
 import { bindActionCreators } from "redux";
@@ -14,7 +14,7 @@ function mapDispatchToProps(dispatch) {
   return { projectActions: bindActionCreators(projectActions, dispatch) };
 }
 
-class Editor extends Component {
+class Project extends Component {
   constructor(props) {
     super(props);
 
@@ -23,6 +23,7 @@ class Editor extends Component {
 
     this.state = {
       project: this.project,
+      featureId: this.props.match.params.feature,
       feature: this.project.feature[this.props.match.params.feature],
       tasks: this.project.tasks[this.props.match.params.feature]
     };
@@ -39,6 +40,7 @@ class Editor extends Component {
   componentWillReceiveProps(nextProps) {
     let state = {
       project: this.project,
+      featureId: nextProps.match.params.feature,
       feature: this.project.feature[nextProps.match.params.feature],
       tasks: this.project.tasks[nextProps.match.params.feature]
     };
@@ -71,13 +73,17 @@ class Editor extends Component {
     let feature = this.state.feature;
     feature[name] = value;
 
+    console.log(feature);
+
     this.setState({ feature: feature });
   };
 
   save() {
-    console.log(this.state);
-    console.log(this.projectActions);
-    this.projectActions.update(this.state);
+    console.log(this.state.featureId);
+    console.log(this.state.project);
+    console.log(this.state.feature);
+    console.log(this.state.project.feature[this.props.match.params.feature]);
+    this.projectActions.updateFeature(this.state.feature);
   }
 
   saveAsTemplate() {
@@ -119,7 +125,7 @@ class Editor extends Component {
     }
 
     return (
-      <article className="Editor">
+      <article className="Project">
         <Header as="h1" dividing>
           {this.state.project.title} / {this.state.feature.title}
         </Header>
@@ -230,4 +236,4 @@ class Editor extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Editor);
+export default connect(mapStateToProps, mapDispatchToProps)(Project);

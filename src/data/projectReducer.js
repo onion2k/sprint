@@ -2,7 +2,8 @@ import {
   DELETE_PROJECT,
   LOAD_PROJECT,
   ADD_PROJECT,
-  UPDATE_PROJECT
+  UPDATE_PROJECT,
+  UPDATE_FEATURE
 } from "./constants.js";
 
 const initialState = {
@@ -67,6 +68,10 @@ export default function project(state = initialState, action) {
 
     case UPDATE_PROJECT:
       state.title = action.contents.title;
+      return { ...state };
+
+    case UPDATE_FEATURE:
+      console.log("Update feature from reducer: ", action.contents);
       return { ...state };
 
     case ADD_PROJECT:

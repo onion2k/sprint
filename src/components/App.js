@@ -17,7 +17,7 @@ import "./App.css";
 
 import Sidebar from "./Sidebar";
 import Home from "./Home";
-import Editor from "./Editor";
+import Project from "./Project";
 import Settings from "./Settings";
 import Estimates from "./Estimates";
 import Rates from "./Rates";
@@ -117,7 +117,7 @@ class App extends Component {
                 <Sidebar />
                 <Route path="/" exact component={Home} />
                 <Route path="/login" component={Login} />
-                <Route path="/editor/:feature?" component={Editor} />
+                <Route path="/project/:feature?" component={Project} />
                 <Route path="/settings" component={Settings} />
                 <Route path="/estimates" component={Estimates} />
                 <Route path="/rates" component={Rates} />
