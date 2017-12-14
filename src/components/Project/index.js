@@ -25,7 +25,7 @@ class Project extends Component {
       project: this.project,
       featureId: this.props.match.params.feature,
       feature: this.project.feature[this.props.match.params.feature],
-      tasks: this.project.tasks[this.props.match.params.feature]
+      tasks: this.project.feature[this.props.match.params.feature].tasks
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -42,7 +42,7 @@ class Project extends Component {
       project: this.project,
       featureId: nextProps.match.params.feature,
       feature: this.project.feature[nextProps.match.params.feature],
-      tasks: this.project.tasks[nextProps.match.params.feature]
+      tasks: this.project.feature[nextProps.match.params.feature].tasks
     };
     this.setState(state);
   }
