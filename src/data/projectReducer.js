@@ -3,7 +3,8 @@ import {
   LOAD_PROJECT,
   ADD_PROJECT,
   UPDATE_PROJECT,
-  UPDATE_FEATURE
+  UPDATE_FEATURE,
+  DELETE_FEATURE
 } from "./constants.js";
 
 const initialState = {
@@ -70,6 +71,11 @@ export default function project(state = initialState, action) {
 
     case UPDATE_FEATURE:
       console.log("Update feature from reducer: ", action.contents);
+      return { ...state };
+
+    case DELETE_FEATURE:
+      state.features.splice(state.features.indexOf(action.contents), 1);
+      delete state.feature[action.contents];
       return { ...state };
 
     case ADD_PROJECT:

@@ -79,19 +79,19 @@ class Project extends Component {
   };
 
   save() {
-    console.log(this.state.featureId);
-    console.log(this.state.project);
-    console.log(this.state.feature);
-    console.log(this.state.project.feature[this.props.match.params.feature]);
+    // console.log(this.state.featureId);
+    // console.log(this.state.project);
+    // console.log(this.state.feature);
+    // console.log(this.state.project.feature[this.props.match.params.feature]);
     this.projectActions.updateFeature(this.state.feature);
   }
 
   saveAsTemplate() {
-    this.projectActions.saveAsTemplate(this.state);
+    this.projectActions.saveAsTemplate(this.state.feature);
   }
 
   delete() {
-    this.projectActions.delete(this.state);
+    this.projectActions.deleteFeature(this.props.history, this.state.featureId);
   }
 
   render() {

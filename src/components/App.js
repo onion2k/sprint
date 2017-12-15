@@ -42,8 +42,8 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-        <Provider store={store}>
+      <Provider store={store}>
+        <Router>
           <div>
             <Menu fixed="top" inverted>
               <Container className="App">
@@ -125,8 +125,8 @@ class App extends Component {
               </main>
             </Container>
           </div>
-        </Provider>
-      </Router>
+        </Router>
+      </Provider>
     );
   }
 }

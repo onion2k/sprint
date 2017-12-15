@@ -43,13 +43,14 @@ export const updateFeature = feature => {
   };
 };
 
-export const del = project => {
+export const deleteFeature = (history, feature) => {
   return function(dispatch, getState) {
     let p = dispatch({
-      type: "DELETE_PROJECT",
-      contents: project
+      type: "DELETE_FEATURE",
+      contents: feature
     });
 
+    history.push("/");
     return p;
   };
 };

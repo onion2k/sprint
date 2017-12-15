@@ -23,17 +23,16 @@ class Home extends Component {
   componentWillMount() {}
 
   render() {
-    let sprints = this.state.project.features.length;
+    let features = this.state.project.features.length;
     let tasks =
-      Object.keys(this.state.project.tasks).reduce((a, b) => {
-        return a + this.state.project.tasks[b].length;
+      Object.keys(this.state.project.feature).reduce((a, b) => {
+        return a + this.state.project.feature[b].tasks.length;
       }, 0) || 0;
     let hours =
-      Object.keys(this.state.project.tasks).reduce((a, b) => {
-        let days = this.state.project.tasks[b].reduce(function(a, b) {
-          return a + (parseInt(b["min"], 10) + parseInt(b["max"], 10)) / 2;
+      Object.keys(this.state.project.feature).reduce((a, b) => {
+        let days = this.state.project.feature[b].tasks.reduce(function(a, b) {
+          return a + (b.min + b.max) / 2;
         }, 0);
-
         return a + days;
       }, 0) || 0;
 
@@ -47,8 +46,8 @@ class Home extends Component {
 
         <Statistic.Group widths="four">
           <Statistic>
-            <Statistic.Value>{sprints}</Statistic.Value>
-            <Statistic.Label>Sprints</Statistic.Label>
+            <Statistic.Value>{features}</Statistic.Value>
+            <Statistic.Label>Features</Statistic.Label>
           </Statistic>
 
           <Statistic>
