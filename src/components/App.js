@@ -51,7 +51,9 @@ class App extends Component {
                   Estimates
                 </Menu.Item>
                 <Menu.Menu position="right">
-                  <Menu.Item as="a">New Feature</Menu.Item>
+                  <Menu.Item as={Link} to="/project/new">
+                    New Feature
+                  </Menu.Item>
                   <Menu.Item as={Link} to="/settings">
                     Project Settings
                   </Menu.Item>

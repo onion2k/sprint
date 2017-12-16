@@ -53,6 +53,14 @@ class Task extends Component {
 
   addTask = e => {
     this.props.update(this.state.task);
+    this.setState({
+      task: {
+        id: null,
+        title: "",
+        min: "",
+        max: ""
+      }
+    });
   };
 
   render() {
@@ -81,14 +89,14 @@ class Task extends Component {
     return (
       <Form className="Task" key={task.id}>
         <Form.Group>
-          <Form.Field required width={10}>
-            <input
-              name="title"
-              placeholder="What is it..."
-              value={task.title}
-              onChange={this.handleChange}
-            />
-          </Form.Field>
+          <Form.Input
+            name="title"
+            required
+            width={10}
+            placeholder="What is it..."
+            value={task.title}
+            onChange={this.handleChange}
+          />
           <Form.Input
             name="min"
             required

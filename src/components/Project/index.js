@@ -14,6 +14,12 @@ function mapDispatchToProps(dispatch) {
   return { projectActions: bindActionCreators(projectActions, dispatch) };
 }
 
+const emptyFeature = {
+  title: "",
+  risks: "",
+  tasks: []
+};
+
 class Project extends Component {
   constructor(props) {
     super(props);
@@ -21,11 +27,16 @@ class Project extends Component {
     this.projectActions = props.projectActions;
     this.project = props.project;
 
+    let feature =
+      this.props.match.params.feature === "new"
+        ? emptyFeature
+        : this.project.feature[this.props.match.params.feature];
+
     this.state = {
       project: this.project,
       featureId: this.props.match.params.feature,
-      feature: this.project.feature[this.props.match.params.feature],
-      tasks: this.project.feature[this.props.match.params.feature].tasks
+      feature: feature,
+      tasks: feature.tasks
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -38,11 +49,15 @@ class Project extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    let feature =
+      nextProps.match.params.feature === "new"
+        ? emptyFeature
+        : this.project.feature[nextProps.match.params.feature];
     let state = {
       project: this.project,
       featureId: nextProps.match.params.feature,
-      feature: this.project.feature[nextProps.match.params.feature],
-      tasks: this.project.feature[nextProps.match.params.feature].tasks
+      feature: feature,
+      tasks: feature.tasks
     };
     this.setState(state);
   }
@@ -57,7 +72,7 @@ class Project extends Component {
     let t = this.state.tasks;
     if (task.id === null) {
       let newtask = Object.assign({}, task);
-      newtask.id = "new";
+      newtask.id = Date.now();
       t.push(newtask);
     } else {
       t[task.id] = task;
@@ -73,16 +88,10 @@ class Project extends Component {
     let feature = this.state.feature;
     feature[name] = value;
 
-    console.log(feature);
-
     this.setState({ feature: feature });
   };
 
   save() {
-    // console.log(this.state.featureId);
-    // console.log(this.state.project);
-    // console.log(this.state.feature);
-    // console.log(this.state.project.feature[this.props.match.params.feature]);
     this.projectActions.updateFeature(this.state.feature);
   }
 
