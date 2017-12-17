@@ -70,7 +70,13 @@ export default function project(state = initialState, action) {
       return { ...state };
 
     case UPDATE_FEATURE:
-      console.log("Update feature from reducer: ", action.contents);
+      if (action.contents.id === undefined) {
+        let id = Date.now();
+        state.feature[id] = action.contents;
+        state.features.push(id);
+      } else {
+        state.feature[action.contents.id] = action.contents;
+      }
       return { ...state };
 
     case DELETE_FEATURE:

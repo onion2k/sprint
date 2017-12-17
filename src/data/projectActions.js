@@ -31,25 +31,14 @@ export const update = project => {
   };
 };
 
-export const createFeature = feature => {
-  return function(dispatch, getState) {
-    console.log("Create feature from action: ", feature);
-    // let p = dispatch({
-    //   type: "CREATE_FEATURE",
-    //   contents: feature
-    // });
-    // history.push("/project/" + id);
-
-    // return p;
-  };
-};
-
 export const updateFeature = feature => {
   return function(dispatch, getState) {
     let p = dispatch({
       type: "UPDATE_FEATURE",
       contents: feature
     });
+
+    console.log(p);
 
     return p;
   };
