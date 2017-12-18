@@ -70,7 +70,7 @@ export default function project(state = initialState, action) {
       return { ...state };
 
     case UPDATE_FEATURE:
-      if (action.contents.id === undefined) {
+      if (state.feature[action.contents.id] === undefined) {
         let id = Date.now();
         state.feature[id] = action.contents;
         state.features.push(id);

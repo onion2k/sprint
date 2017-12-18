@@ -92,7 +92,7 @@ class Project extends Component {
   };
 
   save() {
-    this.projectActions.updateFeature(this.state.feature);
+    this.projectActions.updateFeature(this.props.history, this.state.feature);
   }
 
   saveAsTemplate() {

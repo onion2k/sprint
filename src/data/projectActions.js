@@ -31,15 +31,18 @@ export const update = project => {
   };
 };
 
-export const updateFeature = feature => {
+export const updateFeature = (history, feature) => {
   return function(dispatch, getState) {
+    if (feature.id === undefined) {
+      feature.id = Date.now();
+    }
+
     let p = dispatch({
       type: "UPDATE_FEATURE",
       contents: feature
     });
 
-    console.log(p);
-
+    history.push("/project/" + feature.id);
     return p;
   };
 };
