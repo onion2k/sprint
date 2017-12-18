@@ -51,6 +51,7 @@ class App extends Component {
                   Estimates
                 </Menu.Item>
                 <Menu.Menu position="right">
+                  <Sidebar />
                   <Menu.Item as={Link} to="/project/new">
                     New Feature
                   </Menu.Item>
@@ -116,7 +117,6 @@ class App extends Component {
 
             <Container>
               <main>
-                <Sidebar />
                 <Route path="/" exact component={Home} />
                 <Route path="/login" component={Login} />
                 <Route path="/project/:feature?" component={Project} />

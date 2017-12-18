@@ -36,7 +36,8 @@ class Home extends Component {
         return a + days;
       }, 0) || 0;
 
-    let users = 3;
+    let days = Math.round(hours / 7.5);
+    let sprints = Math.ceil(days / 10);
 
     return (
       <article className="Home">
@@ -56,15 +57,19 @@ class Home extends Component {
           </Statistic>
 
           <Statistic>
-            <Statistic.Value>{Math.round(hours / 7.5)}</Statistic.Value>
+            <Statistic.Value>{days}</Statistic.Value>
             <Statistic.Label>Days Quoted</Statistic.Label>
           </Statistic>
 
           <Statistic>
-            <Statistic.Value>{users}</Statistic.Value>
-            <Statistic.Label>Users</Statistic.Label>
+            <Statistic.Value>{sprints}</Statistic.Value>
+            <Statistic.Label>Sprints</Statistic.Label>
           </Statistic>
         </Statistic.Group>
+
+        <Header as="h2" dividing>
+          Project Timeline
+        </Header>
       </article>
     );
   }

@@ -53,9 +53,53 @@ const initialState = {
         }
       ]
     },
-    abcdef456: { title: "Feature 2", tasks: [] },
-    abcdef789: { title: "Feature 3", tasks: [] },
-    abcdef100: { title: "Feature 4", tasks: [] }
+    abcdef456: {
+      title: "Feature 2",
+      tasks: [
+        {
+          id: "design1",
+          title: "Task 1",
+          min: 15,
+          max: 25,
+          type: "design",
+          comments: ""
+        }
+      ]
+    },
+    abcdef789: {
+      title: "Feature 3",
+      tasks: [
+        {
+          id: "dev1",
+          title: "Development 1",
+          min: 15,
+          max: 25,
+          type: "development",
+          comments: ""
+        },
+        {
+          id: "dev2",
+          title: "Development 2",
+          min: 30,
+          max: 40,
+          type: "development",
+          comments: ""
+        }
+      ]
+    },
+    abcdef100: {
+      title: "Feature 4",
+      tasks: [
+        {
+          id: "test1",
+          title: "Testing",
+          min: 10,
+          max: 12,
+          type: "development",
+          comments: ""
+        }
+      ]
+    }
   }
 };
 

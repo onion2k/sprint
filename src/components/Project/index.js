@@ -175,6 +175,20 @@ class Project extends Component {
         </Form>
 
         <Header as="h2" dividing>
+          Risks
+        </Header>
+
+        <Form style={{ marginBottom: "15px" }}>
+          <Form.TextArea
+            name="risks"
+            label="Risks"
+            value={this.state.risks}
+            placeholder="What are the unknowns? Why might this feature be hard?"
+            onChange={this.handleChange}
+          />
+        </Form>
+
+        <Header as="h2" dividing>
           Tasks
         </Header>
 
@@ -206,20 +220,6 @@ class Project extends Component {
             update={this.updateTask}
           />
         </div>
-
-        <Header as="h2" dividing>
-          Risks
-        </Header>
-
-        <Form style={{ marginBottom: "15px" }}>
-          <Form.TextArea
-            name="risks"
-            label="Risks"
-            value={this.state.risks}
-            placeholder="What are the unknowns? Why might this feature be hard?"
-            onChange={this.handleChange}
-          />
-        </Form>
 
         <Header as="h2" dividing>
           Actions

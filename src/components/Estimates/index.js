@@ -1,11 +1,14 @@
-import React, { Component } from 'react';
-import './Estimates.css';
+import React, { Component } from "react";
+import { Header } from "semantic-ui-react";
+import "./Estimates.css";
 
 class Estimates extends Component {
   render() {
     return (
       <article className="Estimates">
-        <div>Estimates</div>
+        <Header as="h1" dividing>
+          Estimates
+        </Header>
       </article>
     );
   }
