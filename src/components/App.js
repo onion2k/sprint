@@ -52,12 +52,6 @@ class App extends Component {
                 </Menu.Item>
                 <Menu.Menu position="right">
                   <Sidebar />
-                  <Menu.Item as={Link} to="/project/new">
-                    New Feature
-                  </Menu.Item>
-                  <Menu.Item as={Link} to="/settings">
-                    Project Settings
-                  </Menu.Item>
                   <Dropdown item icon="ellipsis vertical">
                     <Dropdown.Menu style={{ minWidth: "200px" }}>
                       <Dropdown.Header>Home</Dropdown.Header>{" "}
@@ -77,7 +71,7 @@ class App extends Component {
                       />
                       <Dropdown.Item
                         as={Link}
-                        to="/feature"
+                        to="/project/new"
                         description="cmd + f"
                         text="New Feature"
                       />

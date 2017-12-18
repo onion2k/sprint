@@ -13,7 +13,6 @@ const initialState = {
   description: "Project desc",
   task: "design",
   risks: "design",
-  features: ["abcdef123", "abcdef456", "abcdef789", "abcdef100"],
   feature: {
     abcdef123: {
       title: "Feature 1",
@@ -116,15 +115,14 @@ export default function project(state = initialState, action) {
     case UPDATE_FEATURE:
       if (state.feature[action.contents.id] === undefined) {
         let id = Date.now();
+        // no tasks? add an array
         state.feature[id] = action.contents;
-        state.features.push(id);
       } else {
         state.feature[action.contents.id] = action.contents;
       }
       return { ...state };
 
     case DELETE_FEATURE:
-      state.features.splice(state.features.indexOf(action.contents), 1);
       delete state.feature[action.contents];
       return { ...state };
 

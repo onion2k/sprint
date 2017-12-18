@@ -34,11 +34,8 @@ class Sidebar extends Component {
   }
 
   render() {
-    let features = this.state.features.map(id => {
+    let features = Object.keys(this.state.feature).map(id => {
       let feature = this.state.feature[id];
-      let hours = this.state.feature[id].tasks.reduce((a, b) => {
-        return a + (b.min + b.max) / 2;
-      }, 0);
       return (
         <Dropdown.Item
           key={id}
@@ -53,7 +50,14 @@ class Sidebar extends Component {
     return (
       <Dropdown item text="Features">
         <Dropdown.Menu style={{ minWidth: "200px" }}>
-          <Dropdown.Header>Features</Dropdown.Header> {features}
+          <Dropdown.Header>Features</Dropdown.Header>
+          {features}
+          <Dropdown.Item
+            as={Link}
+            to="/project/new"
+            description="cmd + f"
+            text="New Feature"
+          />
         </Dropdown.Menu>
       </Dropdown>
     );

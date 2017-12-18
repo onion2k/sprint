@@ -23,7 +23,7 @@ class Home extends Component {
   componentWillMount() {}
 
   render() {
-    let features = this.state.project.features.length;
+    let features = Object.keys(this.state.project.feature).length || 0;
     let tasks =
       Object.keys(this.state.project.feature).reduce((a, b) => {
         return a + this.state.project.feature[b].tasks.length;
